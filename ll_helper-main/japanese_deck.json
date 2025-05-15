@@ -1,0 +1,67 @@
+{
+  "deck_properties": {
+    "public": true,
+    "quiz": true,
+    "typing": true,
+    "speech_to_text": true,
+    "text_to_speech": true,
+    "source_language": "english",
+    "target_language": "japanese"
+  },
+  "cards": [
+    {
+      "source": "ball",
+      "target": "ボール",
+      "source_example": "I kicked the ball.",
+      "target_example": "私はボールを蹴りました。",
+      "extras": {
+        "furigana": "ぼーる",
+        "romanization": "bōru",
+        "ipa": "/boːɾu/"
+      },
+      "srs_data": {
+        "balance": 0,
+        "interval": 0,
+        "ease": 2.5,
+        "lastreviewed": 0,
+        "due": 0
+      }
+    },
+    {
+      "source": "money",
+      "target": "お金",
+      "source_example": "She has a lot of money.",
+      "target_example": "彼女はお金をたくさん持っています。",
+      "extras": {
+        "furigana": "お かね",
+        "romanization": "okane",
+        "ipa": "/oˈka.ne/"
+      },
+      "srs_data": {
+        "balance": 0,
+        "interval": 0,
+        "ease": 2.5,
+        "lastreviewed": 0,
+        "due": 0
+      }
+    },
+    {
+      "source": "school",
+      "target": "学校",
+      "source_example": "I go to school every day.",
+      "target_example": "私は毎日学校に行きます。",
+      "extras": {
+        "furigana": "がっこう",
+        "romanization": "gakkou",
+        "ipa": "/gakkoː/"
+      },
+      "srs_data": {
+        "balance": 0,
+        "interval": 0,
+        "ease": 2.5,
+        "lastreviewed": 0,
+        "due": 0
+      }
+    }
+  ]
+}
