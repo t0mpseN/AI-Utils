@@ -1,0 +1,10 @@
+pychm>=0.8.6  # CHM extraction
+requests>=2.31.0  # HTTP requests
+pymupdf>=1.23.0  # PDF parsing
+beautifulsoup4>=4.12.0  # HTML cleaning
+langchain>=0.1.0  # LLM framework
+langchain-community>=0.0.20  # Embeddings/vectorstores
+langchain-huggingface>=0.0.2  # HuggingFace models
+langchain-ollama>=0.1.0  # Ollama LLM
+chromadb>=0.4.15  # Vector database
+python-dotenv>=1.0.0  # Environment variables

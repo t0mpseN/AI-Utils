@@ -1,6 +1,7 @@
 import os
 import sys
 import io
+import pychm
 import requests
 import fitz  # PyMuPDF
 import shutil
@@ -34,14 +35,29 @@ def load_html(url):
     soup = BeautifulSoup(response.text, "html.parser")
     return soup.get_text()
 
-def load_chm(path):
-    import chm
-    chm_file = chm.CHM(path)
-    text = ""
-    for file in chm_file:
-        if file.lower().endswith(('.htm', '.html', '.txt')):
-            text += chm_file.read(file).decode('utf-8', errors='ignore')
-    return text
+
+def load_chm(chm_path):
+    """Extract text from CHM using PyCHM (best if available)."""
+    try:
+        chm = pychm.CHMFile()
+        if not chm.LoadCHM(chm_path):
+            raise Exception("Failed to load CHM file.")
+        
+        text_content = []
+        
+        # Iterate through all files in the CHM
+        for file_entry in chm:
+            if file_entry.lower().endswith(('.html', '.htm')):
+                content = chm.Extract(file_entry).decode('utf-8', errors='replace')
+                
+                # Use BeautifulSoup to clean HTML
+                from bs4 import BeautifulSoup
+                soup = BeautifulSoup(content, 'html.parser')
+                text_content.append(soup.get_text(separator='\n', strip=True))
+        
+        return '\n\n'.join(text_content)
+    except Exception as e:
+        raise Exception(f"PyCHM extraction failed: {e}")
 
 def make_documents(text):
     return [Document(page_content=text)]
