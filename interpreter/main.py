@@ -17,9 +17,9 @@ os.environ["HF_HUB_DISABLE_SYMLINKS_WARNING"] = "1"
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
 # === Configuration ===
-SOURCE = "npjscilearn201611.pdf"  # Change to PDF path or URL
+SOURCE = "RevitAPI.chm"  # Change to PDF path or URL
 CHROMA_DB_DIR = "./chroma_db"
-MODEL_NAME = "mistral"
+MODEL_NAME = "gemma3"
 
 shutil.rmtree(CHROMA_DB_DIR, ignore_errors=True)
 
@@ -34,16 +34,27 @@ def load_html(url):
     soup = BeautifulSoup(response.text, "html.parser")
     return soup.get_text()
 
+def load_chm(path):
+    import chm
+    chm_file = chm.CHM(path)
+    text = ""
+    for file in chm_file:
+        if file.lower().endswith(('.htm', '.html', '.txt')):
+            text += chm_file.read(file).decode('utf-8', errors='ignore')
+    return text
+
 def make_documents(text):
     return [Document(page_content=text)]
 
 # === Load content ===
-if SOURCE.startswith("http"):
-    print("[+] Loading from URL...")
-    raw_text = load_html(SOURCE)
-else:
-    print("[+] Loading local PDF...")
+if SOURCE.endswith('.pdf'):
     raw_text = load_pdf(SOURCE)
+elif SOURCE.startswith('http'):
+    raw_text = load_html(SOURCE)
+elif SOURCE.endswith('.chm'):
+    raw_text = load_chm(SOURCE)  # Add CHM support
+else:
+    raise ValueError("Unsupported file format.")
 
 # === Chunk + Embed ===
 print("[+] Splitting and embedding...")
