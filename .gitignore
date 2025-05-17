@@ -1,0 +1,8 @@
+venv/
+interpreter/.cache_chm_extracted/
+interpreter/chroma_db/
+interpreter/RevitAPI/
+interpreter/venv/
+interpreter/revit_chunks.pkl
+interpreter/RevitAPI_extracted.txt
+interpreter/revit_text_cache.txt

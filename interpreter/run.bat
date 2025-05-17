@@ -31,7 +31,7 @@ if %ERRORLEVEL% neq 0 (
 
 :: Run the script
 echo Starting the script...
-python your_script_name.py
+python main.py
 if %ERRORLEVEL% neq 0 (
     echo Script execution failed
     pause
