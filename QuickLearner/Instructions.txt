@@ -1,0 +1,3 @@
+Create a venv and install dependencies inside PythonBackend.
+
+Every time you want the AI to read a different file than before, you will need to delete .cache_chm_extracted, chroma_db, chunks.pkl, text_cache.txt inside PythonBackend folder. 

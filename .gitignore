@@ -1,0 +1,11 @@
+QuickLearner/PythonBackend/.cache_chm_extracted/
+QuickLearner/PythonBackend/chroma_db/
+<<<<<<< HEAD
+QuickLearner/PythonBackend/chunks.pkl
+QuickLearner/PythonBackend/text_cache.txt
+QuickLearner/PythonBackend/venv/
+=======
+QuickLearner/PythonBackend/venv/
+QuickLearner/PythonBackend/chunks.pkl
+QuickLearner/PythonBackend/text_cache.txt
+>>>>>>> 9c41718e19c4db04569d2b4757667d838e74d6b9
