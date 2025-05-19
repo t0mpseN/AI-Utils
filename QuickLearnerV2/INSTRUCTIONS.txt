@@ -1,0 +1,3 @@
+Drop files you want the AI to read inside "documents" folder.
+Open "setup.bat" to install dependencies in a venv (only if using for the first time).
+Open "run.bat" to execute the program.

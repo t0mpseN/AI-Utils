@@ -1,0 +1,12 @@
+[
+  {
+    "role": "user",
+    "content": "ol\u00e1, o que voce sabe sobre revestimento de fachadas?",
+    "timestamp": "2025-05-19T18:31:38.359660"
+  },
+  {
+    "role": "assistant",
+    "content": "[INST] <<SYS>>     Voc\u00ea \u00e9 um engenheiro especialista em normas ABNT. Analise estes trechos t\u00e9cnicos:",
+    "timestamp": "2025-05-19T18:35:04.559796"
+  }
+]
