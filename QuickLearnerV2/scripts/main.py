@@ -62,7 +62,7 @@ if __name__ == "__main__":
 
     # 3. Mostra amostras inteligentes
     print(f"\n📊 Páginas técnicas identificadas: {len(technical_pages)}/{len(all_docs)}")
-    for i, page in enumerate(technical_pages[:3]):  # Mostra até 3 páginas de exemplo
+    for i, page in enumerate(technical_pages[:7]):  # Mostra até 3 páginas de exemplo
         content_sample = ' '.join(page.page_content.split()[:30])  # Primeiras 30 palavras
         print(f"\n📄 Página {page.metadata.get('page', '?')+1}:")
         print(f"{content_sample}...")
@@ -76,7 +76,7 @@ if __name__ == "__main__":
         
         # Debug avançado - mostra padrões encontrados
         print("\n🧐 Padrões encontrados nas primeiras páginas:")
-        for i, doc in enumerate(all_docs[:3]):
+        for i, doc in enumerate(all_docs[:7]):
             print(f"\nPágina {i+1} (Meta: {doc.metadata}):")
             print(doc.page_content[:100].replace('\n', ' ') + "...")
         
