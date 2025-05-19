@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("QuickLearnerUI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ee88df6385ce51d1f572ac3103239725f4c1f2cf")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8bdad95aa296e658a73587f1c541e4dd94ffb25d")]
 [assembly: System.Reflection.AssemblyProductAttribute("QuickLearnerUI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("QuickLearnerUI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

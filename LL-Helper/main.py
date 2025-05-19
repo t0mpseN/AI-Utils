@@ -1,10 +1,7 @@
 import requests
 import json
 import time
-import sys
-import io
-
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+import os
 
 TARGET_LANGUAGE = "japanese"
 MODEL_NAME = "gemma3:12b"
@@ -12,28 +9,52 @@ MAX_WORDS = 10000
 INPUT_FILE = "words.txt"
 OUTPUT_FILE = f"{TARGET_LANGUAGE}_deck.json"
 
-PROMPT_TEMPLATE = """
-You are an AI assistant helping create flashcards for language learning.
+REQUIRED_FIELDS = [
+    "source", "source_example", "target_example",
+    "furigana", "furigana_example", "romanization"
+]
 
-For the English word "{word}", provide the following fields in JSON:
+PROMPT_TEMPLATE = """[INST]
+You are a precise Japanese language assistant. Create flashcard data EXACTLY as specified.
 
-- "target": translation into {target_lang}
-- "source_example": simple English sentence using the word (try to write a short sentence)
-- "target_example": translation of the sentence
-- "furigana": the Japanese reading of the word only (if applicable)
-- "romanization": Hepburn romanization of the word only
-- "ipa": IPA pronunciation of the word only
+For the Japanese word/phrase: 「{word}」
 
-Only output a clean JSON object like this:
+Provide these details in CLEAN JSON ONLY (no commentary):
+
+1. "source": English translation (short, literal)
+2. "target_example": Natural Japanese sentence using {word} (polite/neutral)
+3. "source_example": Direct English translation of above sentence
+4. "word_furigana": Reading of {word} in hiragana only
+5. "sentence_furigana": Full sentence reading in hiragana
+6. "romanization": Romaji of {word}
+
+RULES:
+- Convert verbs to dictionary form (〜ます → 〜る)
+- Convert adjectives to dictionary form (きれいです → きれいだ)
+- For kanji without common reading, use [漢字|ふりがな] format
+- Never add explanations or notes
+
+Output ONLY this format:
+```json
 {{
-  "target": "...",
+  "source": "...",
   "source_example": "...",
   "target_example": "...",
-  "furigana": "...",
-  "romanization": "...",
-  "ipa": "..."
+  "word_furigana": "...",
+  "sentence_furigana": "...",
+  "romanization": "..."
 }}
+```[/INST]
 """
+
+
+VERIFY_PROMPT_TEMPLATE = PROMPT_TEMPLATE + """
+
+Here is the existing data for this word. If all values are correct and match the structure and intention of the instructions, return the exact same JSON. If any values seems incorrect to you, regenerate them.:
+
+{existing_json}
+"""
+
 
 def ask_ai(prompt):
     try:
@@ -52,7 +73,6 @@ def ask_ai(prompt):
 
 def safe_parse_json(text):
     try:
-        # Corrige casos de texto extra antes/depois do JSON
         start = text.find('{')
         end = text.rfind('}') + 1
         return json.loads(text[start:end])
@@ -61,26 +81,68 @@ def safe_parse_json(text):
         print(text)
         return None
 
-def generate_card(word):
-    prompt = PROMPT_TEMPLATE.format(word=word, target_lang=TARGET_LANGUAGE.capitalize())
+def load_existing_deck():
+    if not os.path.exists(OUTPUT_FILE):
+        return {"deck_properties": {}, "cards": []}
+    
+    with open(OUTPUT_FILE, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+def word_card_lookup(word, deck):
+    for card in deck["cards"]:
+        if card.get("target") == word:
+            return card
+    return None
+
+def to_prompt_card_json(card):
+    # Converts a card back to the same JSON format used in prompt (for verification)
+    return json.dumps({
+        "source": card["source"],
+        "source_example": card["source_example"],
+        "target_example": card["target_example"],
+        "word_furigana": card.get("extras", {}).get("word_furigana", ""),
+        "sentence_furigana": card.get("extras", {}).get("sentence_furigana", ""),
+        "romanization": card.get("extras", {}).get("romanization", "")
+    }, ensure_ascii=False, indent=2)
+
+def verify_or_generate_card(word, existing_card=None):
+    if existing_card:
+        prompt = VERIFY_PROMPT_TEMPLATE.format(
+            word=word,
+            target_lang=TARGET_LANGUAGE.capitalize(),
+            existing_json=to_prompt_card_json(existing_card)
+        )
+    else:
+        prompt = PROMPT_TEMPLATE.format(
+            word=word,
+            target_lang=TARGET_LANGUAGE.capitalize()
+        )
+    
     raw_output = ask_ai(prompt)
     parsed = safe_parse_json(raw_output)
 
-    if not parsed or not parsed.get("target"):
+    if not parsed or not parsed.get("source"):
         print(f"❌ Falha para '{word}'")
         return None
 
     return {
-        "source": word,
-        "target": parsed["target"],
+        "source": parsed["source"],
+        "target": word,
         "source_example": parsed["source_example"],
         "target_example": parsed["target_example"],
         "extras": {
-            "furigana": parsed["furigana"],
-            "romanization": parsed["romanization"],
-            "ipa": parsed["ipa"]
+            "word_furigana": parsed.get("word_furigana", ""),
+            "sentence_furigana": parsed.get("sentence_furigana", ""),
+            "romanization": parsed.get("romanization", ""),
+            "ipa": parsed.get("ipa", "")
         },
-        "srs_data": {
+        "srs_data": existing_card.get("srs_data", {
+            "balance": 0,
+            "interval": 0,
+            "ease": 2.5,
+            "lastreviewed": 0,
+            "due": 0
+        }) if existing_card else {
             "balance": 0,
             "interval": 0,
             "ease": 2.5,
@@ -90,14 +152,13 @@ def generate_card(word):
     }
 
 def main():
-    if sys.stdout.encoding != 'UTF-8':
-        sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
-
     with open(INPUT_FILE, "r", encoding="utf-8") as f:
         words = [line.strip() for line in f.readlines()[:MAX_WORDS]]
 
-    deck = {
-        "deck_properties": {
+    deck = load_existing_deck()
+
+    if not deck.get("deck_properties"):
+        deck["deck_properties"] = {
             "public": True,
             "quiz": True,
             "typing": True,
@@ -105,19 +166,26 @@ def main():
             "text_to_speech": True,
             "source_language": "english",
             "target_language": TARGET_LANGUAGE
-        },
-        "cards": []
-    }
+        }
+
+    # Initialize cards if not present
+    if "cards" not in deck:
+        deck["cards"] = []
 
     for i, word in enumerate(words):
-        print(f"[{i+1}/{MAX_WORDS}] Gerando carta para: {word}")
-        card = generate_card(word)
-        if card:
-            deck["cards"].append(card)
-        time.sleep(1.5)
+        existing_card = word_card_lookup(word, deck)
+        print(f"[{i+1}/{MAX_WORDS}] 🔍 Verificando ou criando: {word}")
 
-    with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
-        json.dump(deck, f, ensure_ascii=False, indent=2)
+        card = verify_or_generate_card(word, existing_card)
+        if card:
+            # Remove old version if it exists
+            deck["cards"] = [c for c in deck["cards"] if c.get("target") != word]
+            deck["cards"].append(card)
+        
+            with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
+                json.dump(deck, f, ensure_ascii=False, indent=2)
+
+        time.sleep(1.5)
 
     print(f"\n✅ Deck salvo em: {OUTPUT_FILE}")
 
