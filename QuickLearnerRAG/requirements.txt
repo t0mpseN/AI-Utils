@@ -1,0 +1,10 @@
+langchain
+langchain-community
+langchain_ollama
+faiss-cpu
+pypdf
+ollama
+pathlib
+markdown2
+tkhtmlview
+
