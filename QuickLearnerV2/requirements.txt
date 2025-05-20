@@ -1,8 +1,0 @@
-langchain
-langchain-community
-langchain-ollama
-langchain_huggingface
-hf_xet
-pypdf
-chromadb
-pdfminer.six
