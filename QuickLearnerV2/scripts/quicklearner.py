@@ -8,7 +8,7 @@ from rag_pipeline import create_rag_pipeline
 from conversation_manager import ConversationManager
 
 class QuickLearner:
-    def __init__(self, document_directory, model_name="steamdj/llama3.1-cpu-only:latest"):
+    def __init__(self, document_directory, model_name="gemma3:12b"):
         # Convert to absolute path
         doc_path = Path(document_directory)
         if not doc_path.is_absolute():
@@ -30,7 +30,10 @@ class QuickLearner:
 
         # Initialize conversation manager
         self.convo_manager = ConversationManager()
-    
+
+        # Guarda os documentos originais para o modo direto
+        self.raw_documents = load_documents(str(doc_path))
+    '''
     def query(self, question):
         # Add user question to history
         self.convo_manager.add_message("user", question)
@@ -86,7 +89,48 @@ class QuickLearner:
             "answer": answer,
             "sources": [doc.metadata for doc in result["source_documents"]]
         }
+    '''
+
+    def query_direct(self, question, specific_page=None):
+        """Consulta DIRETA ao documento, ignorando o RAG"""
         
+        # 1. Carrega TODAS as páginas (sem filtros)
+        full_text = "\n".join(
+            f"--- PÁGINA {i+1} ---\n{doc.page_content}"
+            for i, doc in enumerate(self.raw_documents))
+        
+        # 2. Foco na página específica se solicitada
+        if specific_page:
+            page_content = next(
+                (doc.page_content for doc in self.raw_documents 
+                if doc.metadata.get('page', 0) == specific_page - 1),
+                "PÁGINA NÃO ENCONTRADA"
+            )
+            context = f"CONTEÚDO DA PÁGINA {specific_page}:\n{page_content}"
+        else:
+            context = f"DOCUMENTO COMPLETO ({len(self.raw_documents)} páginas)"
+        
+        # 3. Envia para o LLM
+        prompt = f"""Analise este documento e responda com PRECISÃO:
+
+    {context}
+
+    PERGUNTA: {question}
+
+    REGRAS:
+    1. Responda somente com informações EXATAS do texto
+    2. Se não encontrar, diga "Não consta no documento"
+    3. Inclua o número da página quando souber"""
+        
+        response = self.llm.invoke(prompt)
+        
+        return {
+            "answer": response,
+            "sources": [{"source": doc.metadata['source'], 
+                        "page": doc.metadata.get('page', 0) + 1} 
+                    for doc in self.raw_documents[:1]]  # Mostra apenas a 1a fonte
+        }
+
     def _format_history(self, messages):
         return "\n".join(
             f"{msg['role']}: {msg['content']}" 

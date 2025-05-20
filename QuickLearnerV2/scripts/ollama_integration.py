@@ -9,7 +9,7 @@ def setup_llm(model_name):
         template="""[INST] <<SYS>>
         You are QuickLearner, a Brazilian technical documentation expert.
         Respond in the same language as the question.
-        Always provide specific excerpts from documents when available.
+        Provide specific excerpts from documents when available.
         <</SYS>>
         
         {context}

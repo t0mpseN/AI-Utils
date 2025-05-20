@@ -1,6 +1,8 @@
 # main.py
 from quicklearner import QuickLearner
 
+MODE = "direct"  # Altere para "rag" ou "direct"
+
 def display_response(response):
     """Formats and displays the response with clean formatting"""
     print("\n" + "="*60)  # Top border
@@ -35,11 +37,42 @@ if __name__ == "__main__":
     if not doc_path.is_absolute():
         doc_path = Path(__file__).parent / document_directory
 
+
     print("\n⏳ Loading documents...")
     all_docs = load_documents(str(doc_path))
+
+
+    print("\n🔍 Verificação crítica do conteúdo:")
+    debug_file = "documento_debug.txt"
+    try:
+        with open(debug_file, 'w', encoding='utf-8') as f:  # Crucial for Windows
+            for doc in all_docs:
+                f.write(f"=== PÁGINA {doc.metadata['page']+1} ===\n")
+                f.write(doc.page_content + "\n\n")
+        print(f"✔ Arquivo '{debug_file}' criado com sucesso (codificação UTF-8)")
+    except Exception as e:
+        print(f"⚠ Falha ao criar arquivo de debug: {str(e)}")
+
+        # Before creating QuickLearner
+    print("\n🔍 Validating document processing:")
+    if not all_docs:
+        raise ValueError("No documents were loaded!")
+
+    # Check text content
+    sample_doc = all_docs[0]
+    print(f"Sample page content (length={len(sample_doc.page_content)}):")
+    print(sample_doc.page_content[:200].replace('\n', ' ') + "...")
+
+    # Verify splitting
+    from document_processor import split_documents
+    split_docs = split_documents(all_docs)
+    print(f"\nSplit into {len(split_docs)} chunks")
+    print("Sample chunk:", split_docs[0].page_content[:200] + "...")
+
+    ''' 
     print(f"✅ Loaded {len(all_docs)} pages total")
     
-    # Substitua o bloco de debug por isto:
+
     print("\n🔍 Analisando estrutura do documento:")
 
     # 1. Mostra estatísticas básicas
@@ -62,7 +95,7 @@ if __name__ == "__main__":
 
     # 3. Mostra amostras inteligentes
     print(f"\n📊 Páginas técnicas identificadas: {len(technical_pages)}/{len(all_docs)}")
-    for i, page in enumerate(technical_pages[:7]):  # Mostra até 3 páginas de exemplo
+    for i, page in enumerate(technical_pages[:0]):  # Mostra até 3 páginas de exemplo
         content_sample = ' '.join(page.page_content.split()[:30])  # Primeiras 30 palavras
         print(f"\n📄 Página {page.metadata.get('page', '?')+1}:")
         print(f"{content_sample}...")
@@ -76,13 +109,13 @@ if __name__ == "__main__":
         
         # Debug avançado - mostra padrões encontrados
         print("\n🧐 Padrões encontrados nas primeiras páginas:")
-        for i, doc in enumerate(all_docs[:7]):
+        for i, doc in enumerate(all_docs[:0]):
             print(f"\nPágina {i+1} (Meta: {doc.metadata}):")
             print(doc.page_content[:100].replace('\n', ' ') + "...")
-        
-    # Now run normally
-    print("\n🚀 Starting QuickLearner...")
+    '''
+    
 
+    print("\n🚀 Starting QuickLearner...")
     # Initialize with your documents directory
     quick_learner = QuickLearner("../documents")
 
@@ -98,5 +131,13 @@ if __name__ == "__main__":
         if question.lower() == 'quit':
             break
         
-        response = quick_learner.query(question)
+        if MODE == "direct":
+            if "página" in question.lower():
+                page_num = int(input("Qual página devo verificar? "))
+                response = quick_learner.query_direct(question, specific_page=page_num)
+            else:
+                response = quick_learner.query_direct(question)
+        else:
+            response = quick_learner.query(question)
+            
         display_response(response)  # Use the new display function

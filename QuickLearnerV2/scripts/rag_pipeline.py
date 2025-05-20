@@ -1,33 +1,41 @@
-#rag_pipeline.py
+# rag_pipeline.py
 from langchain.chains import RetrievalQA
 from langchain.prompts import PromptTemplate
 
 def create_rag_pipeline(llm, vector_store):
     # Portuguese-optimized prompt
     prompt_template = """[INST] <<SYS>>
-    Você é um engenheiro especialista em normas ABNT. Analise estes trechos técnicos:
+    Você é um assistente técnico. Analise ESTE documento completo:
 
     {context}
 
-    Regras:
-    1. Responda somente com o conteúdo EXATO dos documentos
-    2. Se não encontrar, diga "Não localizado nos trechos fornecidos"
-    3. Inclua sempre o número da página
+    Responda de forma:
+    - Técnica e detalhada
+    - Com parágrafos claros
+    - Citando páginas quando relevante
     <</SYS>>
 
-    Pergunta: {question} 
-    [/INST]"""
+    Pergunta: {question} [/INST]"""
+
+    # Create the prompt with correct variable names
+    QA_PROMPT = PromptTemplate(
+        template=prompt_template,
+        input_variables=["context", "question"]
+    )
 
     return RetrievalQA.from_chain_type(
         llm=llm,
         chain_type="stuff",
         retriever=vector_store.as_retriever(
-            search_type="mmr",  # Maximal Marginal Relevance
+            search_type="mmr",
             search_kwargs={
                 "k": 6,
-                "fetch_k": 20  # Wider initial search
+                "fetch_k": 20
             }
         ),
-        chain_type_kwargs={"prompt": PromptTemplate.from_template(prompt_template)},
+        chain_type_kwargs={
+            "prompt": QA_PROMPT,
+            "document_variable_name": "context"  # Explicitly set the variable name
+        },
         return_source_documents=True
     )

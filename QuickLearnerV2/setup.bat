@@ -30,8 +30,10 @@ pip install --upgrade pip
 if exist %REQUIREMENTS_FILE% (
     pip install -r %REQUIREMENTS_FILE%
     echo Dependencies installed successfully!
+    pause
 ) else (
     echo Warning: requirements.txt not found
+    pause
 )
 
 deactivate
