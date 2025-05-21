@@ -19,7 +19,7 @@ def PDFLoader(file_path):
 
     while True:
         # Ask user a question
-        question = input("Ask a question ('q' to exit): ")
+        question = input("\nAsk a question ('q' to exit): ")
 
         if question.lower() == 'q':
             break
@@ -33,8 +33,6 @@ def PDFLoader(file_path):
         # Prepare context for the LLM
         history_text = "\n".join([f"{msg.type.upper()}: {msg.content}" for msg in chat_history.get_messages()])
         context = "\n\n".join([doc.page_content for doc in docs]) + "\n\nChat History:\n" + history_text
-
-        print(str(chat_history.get_messages()))
 
         # Format messages as list of dicts (correct format for most LangChain chat models)
         messages = [
@@ -50,9 +48,9 @@ def PDFLoader(file_path):
         ]
 
         # Get the answer from the LLM
-        answer = llm.invoke(messages).content
+        answer = llm.invoke(messages)
 
         chat_history.add_message(HumanMessage(content=question))
-        chat_history.add_message(SystemMessage(content=answer))
+        chat_history.add_message(SystemMessage(content=answer.content))
 
-        print(f"Answer: {answer}")
+        print(f"\nAnswer: {answer.content}")

@@ -17,7 +17,7 @@ def load_qa_model():
     """
     # Load the question-answering model
     llm = ChatOllama(
-        model="gemma3:16b"
+        model="takenusername/gpt-4o-precise" #takenusername/gpt-4o-precise:latest - gemma3:4b - gemma3:1
     )
     return llm
     

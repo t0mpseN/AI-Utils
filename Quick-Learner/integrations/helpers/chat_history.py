@@ -16,7 +16,6 @@ class FileChatMessageHistory(BaseChatMessageHistory):
         with open(self.file_path, 'r', encoding='utf-8') as f:
             data = json.load(f)
             messages = messages_from_dict(data)
-            print("DEBUG: get_messages returned:", messages)
             return messages
 
     def add_message(self, message: BaseMessage) -> None:

@@ -1,0 +1,14 @@
+[
+  {
+    "type": "human",
+    "data": {
+      "content": "Pode me dizer o procedimento detalhado para execução de juntas de movimentação?",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "human",
+      "name": null,
+      "id": null,
+      "example": false
+    }
+  }
+]

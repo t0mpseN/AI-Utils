@@ -1,0 +1,71 @@
+[
+  {
+    "type": "human",
+    "data": {
+      "content": "Pode me dizer o procedimento detalhado para execução de juntas de movimentação?",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "human",
+      "name": null,
+      "id": null,
+      "example": false
+    }
+  },
+  {
+    "type": "system",
+    "data": {
+      "content": "Okay, let's break down the detailed procedure for executing movement joints, based on the provided document. Here's a breakdown of the process, combining preparation, execution, and considerations.\n\n**1. Preparation - Critical Foundations**\n\n*   **Timing:** Movement joint filling *cannot* begin until at least seven days after the joint has been re-jointed (likely referring to the initial sealing or filling).\n*   **Edge Condition:** The edges of the joint must be:\n    *   Rectangular in profile\n    *   Firm, cohesive, and smooth\n    *   Free from irregularities and foreign obstructions\n    *   If necessary, correction procedures should be used to ensure integrity, homogeneity, mechanical resistance, and good adhesion of the repair.\n*   **Cleanliness:**  The joint *must* be free of contamination – oils, grease, release agents, powdery particles, aggregates, or biological microorganisms (mold, fungus, etc.). This is extremely important for proper sealant adhesion.\n*   **Dryness:** The joint *must* be dry. Moisture can significantly impair sealant adhesion. Manufacturer's instructions *must* be followed if using products on damp surfaces.\n*   **Primer (if required):** If a primer is required, it *must* only be applied within the joint, following the manufacturer’s guidelines.\n\n**2. Execution – Key Steps**\n\n*   **FAS Consideration:** When calculating the joint width, consider the sealant's movement accommodation capacity (FAS).\n*   **Minimum Width:** The minimum joint width (LJ) should ideally be at least 15 mm to ensure feasibility.\n*   **Geometry:**\n    *   **Limiters/Tape (Figures 14-a & 14-b):** If depth limiters or tape are used to control sealant depth:\n        *   Depth limiters are inserted with a template to the specified depth, ensuring the correct form factor.\n        *   The joint geometry should be adjusted during execution if using tape.\n        *   Limiters should have a diameter greater than the groove’s size, so they are pushed in and stay in place without extra fastening.\n    *   **Wider Joints:**  If a wider joint is needed (LJ > LS - sealant width), it can be used, especially where differential level changes occur at the beam base. This allows for confinement of the masonry/structure interface without excessive sealant width. However, these solutions should be detailed in the project.\n*   **Skilled Labor:** The work requires specialized manual skills. Workers *must* be trained and competent.\n\n**3. Considerations & Variations**\n\n*   **Reduced Movement:** In areas with minimal expected movement (e.g., structural masonry, continuous concrete bases, stable mortar substrates), partial removal of the spandrel or simply leaving the layer intact without a groove is acceptable.\n*   **Positioning (as per project):** The exact positioning is determined by the project based on factors like building type, structural behavior, plate type, mortar properties, thermal/hygroscopic variations, and architectural details.\n*   **Horizontal Joints:** Horizontal joints should ideally be no more than 3 meters apart.\n    *   In concrete grid structures with masonry cladding, place joints at each floor level, coinciding with the masonry/structure interface (beam base).\n*   **Vertical Joints:** Vertical joints should be placed no more than every 6 meters.\n*   **Changes in Plane:** Joints don't necessarily need to align with corners, but should be within 3 meters of them.\n*   **Structural Joints:** Structural joints are defined by the structural engineer based on anticipated movements.\n\n**Important Notes:**\n\n*   **Project-Specific Details:**  Always refer to the specific project details and manufacturer's instructions as the ultimate guide.\n*   **Anexos (Annexes):** Annex C provides additional guidance on specific situations.\n\n\n\nTo help me tailor my answer further, could you tell me:\n\n*   What specific aspect of the procedure are you most interested in?",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "system",
+      "name": null,
+      "id": null
+    }
+  },
+  {
+    "type": "human",
+    "data": {
+      "content": "Qual foi o primeiro presidente do Brasil?",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "human",
+      "name": null,
+      "id": null,
+      "example": false
+    }
+  },
+  {
+    "type": "system",
+    "data": {
+      "content": "The first president of Brazil was Deodoro da Fonseca. He served from 1889 to 1891, initially as a provisional president after the proclamation of the Republic, and then as constitutional president.",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "system",
+      "name": null,
+      "id": null
+    }
+  },
+  {
+    "type": "human",
+    "data": {
+      "content": "what was my first question?",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "human",
+      "name": null,
+      "id": null,
+      "example": false
+    }
+  },
+  {
+    "type": "system",
+    "data": {
+      "content": "Your first question was: \"Qual foi o primeiro presidente do Brasil?\" (What was the first president of Brazil?).",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "system",
+      "name": null,
+      "id": null
+    }
+  }
+]
