@@ -1,0 +1,117 @@
+[
+  {
+    "type": "human",
+    "data": {
+      "content": "Pode me explicar o procedimento detalhado de execução de juntas de movimentação?",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "human",
+      "name": null,
+      "id": null,
+      "example": false
+    }
+  },
+  {
+    "type": "system",
+    "data": {
+      "content": "Para executar as juntas de movimentação, você deve seguir os seguintes passos e considerações baseados no contexto fornecido:\n\n1. **Preparo das bordas**:\n   - As bordas devem ter perfil retangular.\n   - Eles precisam estar firmes, cohesivos, lisos e livres de irregularidades ou obstruções estranhas à junta.\n\n2. **Limpeza da junta**:\n   - A junta não deve ter contaminação nem impregnado com óleos, graxas, desmoldantes,\n     partículas pulverentes micro-organismos biológicos como mofo ou fungo.\n   \n3. **Treinamento e capacitação do operador**:\n   - O trabalhador deve ser treinado para realizar tarefas de acabamentos detalhados\n     com qualidade.\n\n4. **Relação largura/profundidade (fator de forma)** :\n    Este fator é especificado no projeto em acordo com o tipo da junta e propriedades do selante aplicado.\n   \n5. **Preparo das juntas**:\n   - As juntas devem ser preparadas according to the supplier's instructions,\n     secas (uma vez que a presença de umidade pode prejudicar a aderência dos selantes).\n    Caso seja necessário, o operador deve aplicar um primer apenas no interior da junta.\n\n6. **Posicionamento das juntas**:\n   - A posição exata das juntas depende de vários fatores, como tipo do edifício,\n     comportamento estrutural; tipo e tamanho dos placas, propriedades da argamassa colante;\n    variação térmica higroscópica do meio etc.\n   \n7. **Distantia entre juntas**:\n   - Para as juntas horizontais em estruturas reticuladas de concreto com vedação,\n     é recomendado que sejam posicionadas a cada pavimento, coincidindo\n    com a interface alvenaria/estrutura (fundo da vigaa), uma vez que esta tende \n   a ser a região mais suscetível a movimentos diferenciais.\n   \n8. **Juntas verticais**:\n  - Para as juntas verticais, é recomendado que sejam posicionadas no máximo\n    a cada 6 m.\n\n9. **Posicionamento em mudanças de plano (diedros internos e externos)** :\n   As juntas não precisam necessariamente coincidir com quinas,\n     seja elas internas ou externas; entretanto, é recomendado que\n    a distância da junta até à quina não exceda os 3 m.\n\n10. **Referências adicionais**:\n   - O Anexo C expõe algumas situações típicas para orientação do posicionamento das juntas de movimentação.\n   \nO objetivo é garantir que as juntas sejam preparadas corretamente e posicionadas com precisão em relação às propriedades dos selantes, bem como considerando o comportamento estrutural da edificação.",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "system",
+      "name": null,
+      "id": null
+    }
+  },
+  {
+    "type": "human",
+    "data": {
+      "content": "Quem foi o primeiro presidente do Brasil?",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "human",
+      "name": null,
+      "id": null,
+      "example": false
+    }
+  },
+  {
+    "type": "system",
+    "data": {
+      "content": "The first president of Brazil was Marechal Deodoro da Fonseca. He served as the provisional head from 1889 to November 27th, when he signed a decree declaring himself President and Commander in Chief for life (although this title would later be revoked). His presidency laid crucial groundwork during which time several important political events took place including Brazil's transition into republicanism after more than three centuries as an empire.",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "system",
+      "name": null,
+      "id": null
+    }
+  },
+  {
+    "type": "human",
+    "data": {
+      "content": "Qual foi a primeira pergunta que eu te fiz?",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "human",
+      "name": null,
+      "id": null,
+      "example": false
+    }
+  },
+  {
+    "type": "system",
+    "data": {
+      "content": "A primeira pergunta que você fez é \"Pode me explicar o procedimento detalhado de execução de juntas de movimentação?\"",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "system",
+      "name": null,
+      "id": null
+    }
+  },
+  {
+    "type": "human",
+    "data": {
+      "content": "Quem foi Lucas Timm?",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "human",
+      "name": null,
+      "id": null,
+      "example": false
+    }
+  },
+  {
+    "type": "system",
+    "data": {
+      "content": "I'm sorry, but I don't have any information about a person named Lucas Timm. Could you please provide more context or details so that I can assist better with your query regarding this individual's identity and background?\n",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "system",
+      "name": null,
+      "id": null
+    }
+  },
+  {
+    "type": "human",
+    "data": {
+      "content": "who is xqc",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "human",
+      "name": null,
+      "id": null,
+      "example": false
+    }
+  },
+  {
+    "type": "system",
+    "data": {
+      "content": "XQC (pronounced \"shock\") was the stage name of Félix Lengyel, also known as Felixxus in Europe. He gained notoriety for his prowess at various video games including Counter-Strike 1 & 2 and Team Fortress Classic on QuakeWorld servers during a brief period around late '90s to early mid-late' noughties (roughly between the years of ~’ninetynine through ’twelve). Lengyel was an important figure in e-sports history, particularly within what is now known as Counter-Strike. His gaming career saw him become one half - alongside his teammate and friend Nicolai \"Niko\" Minichkov (also a prominent player at the time) of famous team 1st Strike that dominated online tournaments during its heyday.\n\nHowever it's important to note, Lengyel passed away in July '06 due what was later determined as an accidental drug overdose. There are many stories and myths surrounding his life post-retirement from competitive play but none can be confirmed definitively by reliable sources beyond the facts of him passing at a young age.\n\nXQC is also known for being active on Twitch, where he streams various games including Minecraft among others; often interacting with fans through live streaming sessions.",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "system",
+      "name": null,
+      "id": null
+    }
+  }
+]

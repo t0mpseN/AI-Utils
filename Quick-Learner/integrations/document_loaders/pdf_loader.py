@@ -1,56 +1,84 @@
-from langchain_community.document_loaders import PyPDFLoader
-from langchain_core.vectorstores import InMemoryVectorStore
+# pdf_loader.py
+import os
+import hashlib
 from datetime import datetime
+from langchain_community.document_loaders import PyPDFLoader
+from langchain_community.vectorstores import FAISS
 from langchain_core.messages import HumanMessage, SystemMessage
 from ..model_loaders.simple_interpreter import load_embedding_model, load_qa_model
 from ..helpers.chat_history import FileChatMessageHistory
 
-def PDFLoader(file_path):
-    # Load PDF pages
-    loader = PyPDFLoader(file_path)
-    pages = list(loader.lazy_load())
+def get_file_hash(file_path):
+    with open(file_path, "rb") as f:
+        return hashlib.md5(f.read()).hexdigest()
 
-    # Load embedding model and build vector store
-    embed = load_embedding_model()
-    vector_store = InMemoryVectorStore.from_documents(pages, embed)
+class ChatPDF:
+    def __init__(self):
+        self.vector_store = None
+        self.chat_history = None
+        self.llm = load_qa_model()
+        self.embed = load_embedding_model()
+        self.last_file_hash = None
 
-    # Store messages in chat history
-    chat_history = FileChatMessageHistory("./storage/chat_history.json", f"session_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}")
+    def ingest(self, file_path, progress_callback=None):
+        file_hash = get_file_hash(file_path)
+        vectorstore_path = f"./storage/faiss/{file_hash}"
 
-    while True:
-        # Ask user a question
-        question = input("\nAsk a question ('q' to exit): ")
+        if self.last_file_hash == file_hash and os.path.exists(vectorstore_path):
+            self.vector_store = FAISS.load_local(vectorstore_path, self.embed)
+        else:
+            self.last_file_hash = file_hash
+            loader = PyPDFLoader(file_path)
+            pages = list(loader.lazy_load())
 
-        if question.lower() == 'q':
-            break
+            if progress_callback:
+                progress_callback(0.3, "Generating embeddings...")
 
-        # Find relevant documents
-        docs = vector_store.similarity_search(question, k=2) 
+            self.vector_store = FAISS.from_documents(pages, self.embed)
 
-        # Load LLM for answering
-        llm = load_qa_model()
+            os.makedirs(vectorstore_path, exist_ok=True)
+            self.vector_store.save_local(vectorstore_path)
 
-        # Prepare context for the LLM
-        history_text = "\n".join([f"{msg.type.upper()}: {msg.content}" for msg in chat_history.get_messages()])
+            if progress_callback:
+                progress_callback(1.0, "Ingestion complete!")
+
+        session_id = f"session_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}"
+        self.chat_history = FileChatMessageHistory("./storage/chat_history.json", session_id)
+
+    def ask(self, question: str):
+        if not self.vector_store or not self.chat_history:
+            return "No document loaded. Please upload a PDF first."
+
+        docs = self.vector_store.similarity_search(question, k=1) #usar 2 ou 3 pra melhorar a resposta
+        
+        history_text = "\n".join([
+            f"{msg.type.upper()}: {msg.content}"
+            for msg in self.chat_history.get_messages()
+        ])
+        
         context = "\n\n".join([doc.page_content for doc in docs]) + "\n\nChat History:\n" + history_text
 
-        # Format messages as list of dicts (correct format for most LangChain chat models)
         messages = [
             {"role": "system", "content": (
-                "You are a trained model, used as an assistant for general question-answering tasks. "
-                "You should answer any question asked with your current knowledge. "
-                "You can use the following pieces of context to answer the question (if related to the context). "
-                "If the question is not related to the context, ignore the context provided and give a proper answer with your own knowledge of a trained model. "
-                "Answer in the language of the question."
-                "Give a complete answer."
+                "You are a trained model used as an assistant for general question-answering tasks. "
+                "You can use the following pieces of context to answer the question (if relevant). "
+                "If not, just answer based on your knowledge. Answer in the language of the question."
             )},
             {"role": "user", "content": f"Context:\n{context}\n\nQuestion: {question}"}
         ]
 
-        # Get the answer from the LLM
-        answer = llm.invoke(messages)
+        full_response = ""
+        for chunk in self.llm.stream(messages):
+            content = chunk.content
+            if content:
+                content_str = str(content)
+                full_response += content_str
+                yield content_str
 
-        chat_history.add_message(HumanMessage(content=question))
-        chat_history.add_message(SystemMessage(content=answer.content))
+        # Save to history
+        self.chat_history.add_message(HumanMessage(content=question))
+        self.chat_history.add_message(SystemMessage(content=full_response))
 
-        print(f"\nAnswer: {answer.content}")
+    def clear(self):
+        self.vector_store = None
+        self.chat_history = None

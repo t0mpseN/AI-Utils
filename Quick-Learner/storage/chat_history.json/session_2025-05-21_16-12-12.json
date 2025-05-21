@@ -1,0 +1,25 @@
+[
+  {
+    "type": "human",
+    "data": {
+      "content": "O que são juntas de movimentação?",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "human",
+      "name": null,
+      "id": null,
+      "example": false
+    }
+  },
+  {
+    "type": "system",
+    "data": {
+      "content": "As juntas de movimentação são seladas, ou seja, preenchidas por um selante que atende aos requisitos especificados. Elas controlam a fissuração entre superfícies sujeitas a movimento diferencial, subdividem as superfícies revestidas e separam o revestimento cerâmico de outros elementos construtivos que se movimentam de forma distinta. Além disso, podem apresentar maior ou menor grau de movimento e devem ser detalhadas no PRF (Plano de Resistência e Flexibilidade).",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "system",
+      "name": null,
+      "id": null
+    }
+  }
+]

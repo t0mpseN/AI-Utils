@@ -1,0 +1,48 @@
+[
+  {
+    "type": "human",
+    "data": {
+      "content": "Olá, consegue me explicar o procedimento detalhado para a execução de juntas de movimentação?",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "human",
+      "name": null,
+      "id": null,
+      "example": false
+    }
+  },
+  {
+    "type": "system",
+    "data": {
+      "content": "Sim, claro! Aqui está o procedimento detalhado para a execução de juntas de movimentação:\n\n**Preparo prévio**\n\n1. Verifique se as bordas da junta possuem perfil retangular e estão firmes, coesas, lisas e livres de irregularidades e obstruções estranhas à junta.\n2. Certifique-se de que a junta esteja isenta de contaminações e impregnações de qualquer natureza, como óleos, graxas, desmoldantes, partículas pulverulentas e micro-organismos biológicos.\n\n**Execução da junta**\n\n1. O trabalho de produção da junta exige habilidades manuais específicas para acabamentos detalhados de boa qualidade.\n2. A relação largura/profundidade (fator de forma) é especificada em projeto de acordo com o tipo de junta e com as propriedades do selante aplicado.\n\n**Preparo da junta para aplicação**\n\n1. As juntas devem ser preparadas conforme orientações do fornecedor do selante.\n2. Certifique-se de que a junta esteja seca antes de aplicar o selante, pois a presença de umidade pode prejudicar a aderência dos selantes.\n\n**Aplicação de primer**\n\n1. Se necessário, aplique um primer apenas no interior da junta, seguindo as orientações do fabricante.\n\n**Verificação final**\n\n1. Verifique se o fator de forma está garantido para evitar problemas de aplicação.\n2. Certifique-se de que a junta esteja isenta de contaminações e impregnações antes de proceder com a aplicação do selante.\n\nLembre-se de seguir as instruções específicas fornecidas pelo fabricante do selante e do material utilizado para a execução da junta. Além disso, é importante treinar e capacitar os operários para realizar essa tarefa adequadamente.",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "system",
+      "name": null,
+      "id": null
+    }
+  },
+  {
+    "type": "human",
+    "data": {
+      "content": "Quem foi o 1º presidente do Brasil?",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "human",
+      "name": null,
+      "id": null,
+      "example": false
+    }
+  },
+  {
+    "type": "system",
+    "data": {
+      "content": "Não há nenhuma informação no contexto fornecido sobre o primeiro presidente do Brasil. O contexto parece estar relacionado a especificações técnicas de materiais e construção, não à história política ou aos eventos históricos. Portanto, não posso fornecer uma resposta relevante para a pergunta com base nos dados disponíveis.",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "system",
+      "name": null,
+      "id": null
+    }
+  }
+]

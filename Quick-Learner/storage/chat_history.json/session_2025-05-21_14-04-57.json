@@ -1,0 +1,25 @@
+[
+  {
+    "type": "human",
+    "data": {
+      "content": "Pode me explicar o procedimento detalhado de execução das juntas de movimentação?",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "human",
+      "name": null,
+      "id": null,
+      "example": false
+    }
+  },
+  {
+    "type": "system",
+    "data": {
+      "content": "Para executar as juntas de movimentação, você deve seguir estes passos:\n\na) As bordas da junta devem ter perfil retangular e ser firmes, coisas que garantirão a integridade, homogeneidade mechanical and boa aderência do reparo.\n\nb) A junta não pode estar contaminada por qualquer tipo de substância como óleos ou graxas. Além disso, deve evitar o crescimento de mofo e fungos entre outras infecções biológicas que podem prejudicar a integridade da janela.\n\nc) O trabalho de produção das juntas exige habilidades manuais específicas para acabamentos detalhados de boa qualidade. Portanto, é necessário treinar os operadores adequadamente antes do início dos trabalhos.\n\nd) A relação largura/profundidade (fator de forma) da junta deve ser especificada em projeto e depende do tipo de janela e propriedades do selante utilizado na sua instalação.",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "system",
+      "name": null,
+      "id": null
+    }
+  }
+]

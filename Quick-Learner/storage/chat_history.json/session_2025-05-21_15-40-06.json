@@ -1,0 +1,25 @@
+[
+  {
+    "type": "human",
+    "data": {
+      "content": "oi",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "human",
+      "name": null,
+      "id": null,
+      "example": false
+    }
+  },
+  {
+    "type": "system",
+    "data": {
+      "content": "Olá! Você está procurando informações sobre o manual \"ABNT NBR 13755:2017\"? Esse é um documento técnico que estabelece normas e procedimentos para a execução de revestimentos cerâmicos em estruturas. Se você tiver alguma dúvida específica relacionada ao conteúdo desse manual, posso tentar ajudar!",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "system",
+      "name": null,
+      "id": null
+    }
+  }
+]

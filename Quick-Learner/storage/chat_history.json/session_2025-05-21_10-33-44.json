@@ -1,0 +1,25 @@
+[
+  {
+    "type": "human",
+    "data": {
+      "content": "Um galpão com 25m de largura, 60m de profundidade e 6,3m de altura. As únicas aberturas existentes são as seguintes: o portão 1 (5 x 5 m2), o portão 2 (5 x 6 m2) e a porta (1,2 x 2,3m2). O galpão industrial é dotado de tapamentos nas fachadas e telhas nos planos da cobertura executados em chapa de seção trapezoidal. O portão 2 está afastado 6m da face frontal de 25m. Determinar a distribuição de pressões internas devidas ao vento utilizando o método detalhado da NBR-6123.",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "human",
+      "name": null,
+      "id": null,
+      "example": false
+    }
+  },
+  {
+    "type": "system",
+    "data": {
+      "content": "O texto fornecido trata especificamente da ABNT NBR 6123:2023, que estabelece normas para o projeto de estruturas de concreto e aço contra a ação do vento. Ele oferece informações sobre cúpulas sobre paredes cilíndricas e a aplicação da norma em pontes.\n\nO documento não fornece um método detalhado para determinar a distribuição de pressões internas devidas ao vento, como o método detalhado descrito na NBR-6123. Ele apenas fornece contexto e informações relevantes sobre a norma, incluindo as seções que tratam de cúpulas e pontes, e descreve as seções transversais típicas de pontes.\n\nPara determinar a distribuição de pressões internas devidas ao vento no galpão, seria necessário seguir o método detalhado da NBR-6123, que inclui etapas como:\n\n1.  Determinação do coeficiente de pressão externo para cada abertura, considerando a forma, tamanho e localização.\n2.  Cálculo das pressões externas nas aberturas.\n3.  Determinação das pressões internas no galpão, levando em conta os tapamentos nas fachadas e as características da cobertura (chapa de seção trapezoidal).\n\nRecomenda-se consultar a NBR 6123:2023 para obter as informações e procedimentos necessários para realizar o cálculo detalhado da ação do vento no galpão.",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "system",
+      "name": null,
+      "id": null
+    }
+  }
+]
