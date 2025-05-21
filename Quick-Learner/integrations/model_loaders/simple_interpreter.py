@@ -17,15 +17,7 @@ def load_qa_model():
     """
     # Load the question-answering model
     llm = ChatOllama(
-        model="gemma3:4b"
+        model="gemma3:16b"
     )
-
-    messages = [
-        ("system", "You are a helpful translator. Translate the user sentence to French."),
-        ("human", "I love programming."),
-    ]
-    llm.invoke(messages)
-
-
     return llm
     
