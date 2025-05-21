@@ -20,14 +20,27 @@ class ChatPDF:
         self.embed = load_embedding_model()
         self.last_file_hash = None
 
+
+    def requires_context(self, question: str) -> bool:
+        system_prompt = "Você é um assistente que determina se uma pergunta precisa de contexto adicional de um documento para ser respondida com precisão. Responda apenas 'sim' ou 'não'."
+        user_prompt = f"A seguinte pergunta precisa de informações de um documento para ser respondida corretamente?\n\nPergunta: {question}"
+        
+        messages = [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_prompt}
+        ]
+        
+        response = self.llm.invoke(messages)
+        return "sim" in str(response.content).lower()
+
+
     def ingest(self, file_path, progress_callback=None):
         file_hash = get_file_hash(file_path)
         vectorstore_path = f"./storage/faiss/{file_hash}"
 
-        if self.last_file_hash == file_hash and os.path.exists(vectorstore_path):
-            self.vector_store = FAISS.load_local(vectorstore_path, self.embed)
+        if os.path.exists(vectorstore_path):
+            self.vector_store = FAISS.load_local(vectorstore_path, self.embed, allow_dangerous_deserialization=True)
         else:
-            self.last_file_hash = file_hash
             loader = PyPDFLoader(file_path)
             pages = list(loader.lazy_load())
 
@@ -42,6 +55,7 @@ class ChatPDF:
             if progress_callback:
                 progress_callback(1.0, "Ingestion complete!")
 
+
         session_id = f"session_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}"
         self.chat_history = FileChatMessageHistory("./storage/chat_history.json", session_id)
 
@@ -49,7 +63,22 @@ class ChatPDF:
         if not self.vector_store or not self.chat_history:
             return "No document loaded. Please upload a PDF first."
 
-        docs = self.vector_store.similarity_search(question, k=1) #usar 2 ou 3 pra melhorar a resposta
+        #docs = self.vector_store.similarity_search(question, k=1) #usar 2 ou 3 pra melhorar a resposta
+        
+        #retriever = self.vector_store.as_retriever(search_type="similarity", search_kwargs={"k": 2})
+        #docs = retriever.get_relevant_documents(question)
+
+        # Decide se precisa do contexto
+        use_context = self.requires_context(question)
+
+        docs = []
+
+        if use_context and self.vector_store:
+            docs = self.vector_store.similarity_search(question, k=2)
+            context = "\n\n".join([doc.page_content for doc in docs])
+        else:
+            context = ""
+
         
         history_text = "\n".join([
             f"{msg.type.upper()}: {msg.content}"

@@ -1,8 +1,0 @@
-{
-  "tmpfstnkv43_01e970f679b9dadaf7ffc56068286f9f": {
-    "file_name": "tmpfstnkv43",
-    "vectorstore_path": "./storage/faiss\\tmpfstnkv43_01e970f679b9dadaf7ffc56068286f9f",
-    "timestamp": "2025-05-21T16:56:14.137875",
-    "file_hash": "01e970f679b9dadaf7ffc56068286f9f"
-  }
-}

@@ -10,7 +10,7 @@ def load_embedding_model():
     # Load the embedding model
      # mxbai-embed-large or nomic-embed-text
     embed = OllamaEmbeddings(
-        model="mxbai-embed-large" #nomic-embed-text e mxbai-embed-large
+        model="nomic-embed-text" #nomic-embed-text e mxbai-embed-large
     )
     return embed
 
