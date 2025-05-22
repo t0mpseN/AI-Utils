@@ -20,20 +20,6 @@ class ChatPDF:
         self.embed = load_embedding_model()
         self.last_file_hash = None
 
-
-    def requires_context(self, question: str) -> bool:
-        system_prompt = "Você é um assistente que determina se uma pergunta precisa de contexto adicional de um documento para ser respondida com precisão. Responda apenas 'sim' ou 'não'."
-        user_prompt = f"A seguinte pergunta precisa de informações de um documento para ser respondida corretamente?\n\nPergunta: {question}"
-        
-        messages = [
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": user_prompt}
-        ]
-        
-        response = self.llm.invoke(messages)
-        return "sim" in str(response.content).lower()
-
-
     def ingest(self, file_path, progress_callback=None):
         file_hash = get_file_hash(file_path)
         vectorstore_path = f"./storage/faiss/{file_hash}"
@@ -63,23 +49,11 @@ class ChatPDF:
         if not self.vector_store or not self.chat_history:
             return "No document loaded. Please upload a PDF first."
 
-        #docs = self.vector_store.similarity_search(question, k=1) #usar 2 ou 3 pra melhorar a resposta
+        docs = self.vector_store.similarity_search(question, k=2) #usar 2 ou 3 pra melhorar a resposta
         
         #retriever = self.vector_store.as_retriever(search_type="similarity", search_kwargs={"k": 2})
         #docs = retriever.get_relevant_documents(question)
-
-        # Decide se precisa do contexto
-        use_context = self.requires_context(question)
-
-        docs = []
-
-        if use_context and self.vector_store:
-            docs = self.vector_store.similarity_search(question, k=2)
-            context = "\n\n".join([doc.page_content for doc in docs])
-        else:
-            context = ""
-
-        
+   
         history_text = "\n".join([
             f"{msg.type.upper()}: {msg.content}"
             for msg in self.chat_history.get_messages()
@@ -89,9 +63,13 @@ class ChatPDF:
 
         messages = [
             {"role": "system", "content": (
-                "You are a trained model used as an assistant for general question-answering tasks. "
-                "You can use the following pieces of context to answer the question (if relevant). "
-                "If not, just answer based on your knowledge. Answer in the language of the question."
+                "You are a trained model used as an assistant for GENERAL question-answering tasks. "
+                "You can answer ANY question based on your own knowledge. "
+                "ALWAYS answer in the same language as the question. "
+                "Give a detailed answer, and if the question is not clear, ask for clarification. "
+                "You can use the following pieces of context to answer the question if relevant. "
+                "If the question is unrelated to the context, answer based on your knowledge. "
+                "Always remember you can answer any question because you are a capable assistant. "
             )},
             {"role": "user", "content": f"Context:\n{context}\n\nQuestion: {question}"}
         ]

@@ -3,5 +3,8 @@ langchain-core
 langchain-community
 langchain-ollama
 langchain_experimental
-ollama
+streamlit
+streamlit_chat
+faiss-cpu
 pypdf
+datetime

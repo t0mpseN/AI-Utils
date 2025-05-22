@@ -2,7 +2,7 @@
   {
     "type": "human",
     "data": {
-      "content": "oi, tudo bom?",
+      "content": "olá",
       "additional_kwargs": {},
       "response_metadata": {},
       "type": "human",
@@ -14,7 +14,7 @@
   {
     "type": "system",
     "data": {
-      "content": "Tudo bom! Em que posso ajudar você?",
+      "content": "Eu fui Hackeado",
       "additional_kwargs": {},
       "response_metadata": {},
       "type": "system",
