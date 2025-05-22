@@ -1,0 +1,48 @@
+[
+  {
+    "type": "human",
+    "data": {
+      "content": "teste",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "human",
+      "name": null,
+      "id": null,
+      "example": false
+    }
+  },
+  {
+    "type": "system",
+    "data": {
+      "content": "A resposta à sua pergunta \"teste\" não está presente no texto fornecido. O texto é um trecho de um documento técnico (ABNT NBR 13755:2017) que trata de um painel teste para revestimentos cerâmicos, detalhando como executá-lo, validar e analisar os resultados. \n\nPara responder à sua pergunta de forma mais útil, preciso saber o que você gostaria de testar. Por exemplo, você gostaria de saber:\n\n*   Como executar um painel teste?\n*   Quais os ensaios realizados no painel teste?\n*   Como a análise exploratória dos resultados é aplicada?\n\nPor favor, especifique sua pergunta para que eu possa fornecer uma resposta mais precisa e relevante.",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "system",
+      "name": null,
+      "id": null
+    }
+  },
+  {
+    "type": "human",
+    "data": {
+      "content": "oi",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "human",
+      "name": null,
+      "id": null,
+      "example": false
+    }
+  },
+  {
+    "type": "system",
+    "data": {
+      "content": "Olá! O texto fornecido é um trecho da norma ABNT NBR 13755:2017, que trata de um painel teste para revestimentos cerâmicos. Ele detalha os passos para executar, validar e analisar os resultados de um teste específico para avaliar a qualidade do revestimento.  Não há uma resposta direta para \"oi\", mas espero que esta informação seja útil!\n",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "system",
+      "name": null,
+      "id": null
+    }
+  }
+]

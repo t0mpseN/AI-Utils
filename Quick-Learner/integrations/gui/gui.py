@@ -1,46 +1,15 @@
 import os
 import tempfile
 import streamlit as st
+import time
 from streamlit_chat import message
 from ..document_loaders.pdf_loader import ChatPDF
 
 st.set_page_config(page_title="Quick Learner", page_icon="🤓", layout="wide")
 
 def display_messages():
-    # Add CSS for scrollable chat box
-    st.markdown("""
-    <style>
-    .chat-container {
-        max-height: 600px;
-        overflow-y: auto;
-        padding-right: 10px;
-        margin-bottom: 20px;
-    }
-    .chat-container::-webkit-scrollbar {
-        width: 8px;
-    }
-    .chat-container::-webkit-scrollbar-track {
-        background: #f1f1f1;
-        border-radius: 10px;
-    }
-    .chat-container::-webkit-scrollbar-thumb {
-        background: #888;
-        border-radius: 10px;
-    }
-    .chat-container::-webkit-scrollbar-thumb:hover {
-        background: #555;
-    }
-    </style>
-    """, unsafe_allow_html=True)
-    
-    st.subheader("Chat")
-    
-    # Create scrollable container
     st.markdown('<div class="chat-container">', unsafe_allow_html=True)
-    
     messages = st.session_state["messages"]
-    
-    # Display all messages
     for msg, is_user in messages:
         if is_user:
             with st.chat_message("user"):
@@ -48,16 +17,12 @@ def display_messages():
         else:
             with st.chat_message("assistant"):
                 st.markdown(msg)
-    
-    # Display streaming response if active
     if st.session_state.get("is_streaming", False):
         with st.chat_message("assistant"):
             if "streaming_placeholder" not in st.session_state:
                 st.session_state["streaming_placeholder"] = st.empty()
-            
             current_response = st.session_state.get("current_response", "🔍 Processando pergunta...")
             st.session_state["streaming_placeholder"].markdown(current_response + "▌")
-    
     st.markdown('</div>', unsafe_allow_html=True)
 
 def process_input():
@@ -134,8 +99,9 @@ def read_and_save_file():
         
         def update_progress(p, label=""):
             progress_bar.progress(p, text=label)
-        
+
         st.session_state["assistant"].ingest(file_path, progress_callback=update_progress)
+        
         os.remove(file_path)
 
 def page():
@@ -168,15 +134,7 @@ def page():
             label_visibility="collapsed",
             accept_multiple_files=True,
         )
-        
-        if uploaded_files:
-            st.markdown('<div class="file-list"><b>Arquivos carregados:</b>', unsafe_allow_html=True)
-            for file in uploaded_files:
-                st.markdown(f'<div class="file-item">{file.name}</div>', unsafe_allow_html=True)
-            st.markdown('</div>', unsafe_allow_html=True)
-        else:
-            st.markdown("Nenhum arquivo carregado.", unsafe_allow_html=True)
-        
+
         st.markdown('</div>', unsafe_allow_html=True)
     
     st.markdown('</div>', unsafe_allow_html=True)

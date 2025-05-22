@@ -1,0 +1,48 @@
+[
+  {
+    "type": "human",
+    "data": {
+      "content": "olá",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "human",
+      "name": null,
+      "id": null,
+      "example": false
+    }
+  },
+  {
+    "type": "system",
+    "data": {
+      "content": "Olá! Como posso ajudar você hoje?",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "system",
+      "name": null,
+      "id": null
+    }
+  },
+  {
+    "type": "human",
+    "data": {
+      "content": "me dê o processo detalhado para execuçao de revestimento ceramico em fachadas",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "human",
+      "name": null,
+      "id": null,
+      "example": false
+    }
+  },
+  {
+    "type": "system",
+    "data": {
+      "content": "O processo detalhado para execução de revestimento cerâmico em fachadas, conforme o documento fornecido, pode ser resumido nas seguintes etapas, considerando os requisitos especificados:\n\n**1. Condições Pré-Revestimento:**\n\n*   **Projeto Concluído:** O projeto de revestimento de fachada deve estar totalmente finalizado.\n*   **Equipes Treinadas:** Todas as equipes de produção, controle e apoio logístico (almoxarifado, transporte) devem estar treinadas em todos os detalhes técnicos e estéticos.\n*   **Logística Acordada:** A logística de execução e controle para aceitação do revestimento cerâmico deve estar acordada entre todos os envolvidos, e as planilhas de verificação de serviços devem estar disponíveis.\n*   **Inspeção e Produção:** Equipes de inspeção e produção devem estar cientes dos detalhes do processo de aceitação.\n\n**2. Preparação da Base:**\n\n*   **Instalações Embutidas:** Todas as instalações embutidas nas fachadas (canalizações, caixas de passagem, etc.) devem ser concluídas.\n*   **Preparação da Base:** A base deve ser preparada de acordo com as especificações do projeto (Anexo D).\n*   **Chapisco e Emboço:** Execução do chapisco e emboço, observando as normas ABNT NBR 7200 e ABNT NBR 13749. A idade mínima do chapisco para aplicação do emboço deve ser de três dias, salvo recomendações contrárias do fabricante.\n*   **Tratamentos Especiais:** Considerar tratamentos especiais da base e chapisco diferenciados, conforme especificado no projeto.\n\n**3. Assentamento das Placas Cerâmicas:**\n\n*   **Condições Ambientais:** Observar as condições ambientais:\n    *   Umidade relativa abaixo de 25%, temperatura inferior a 5°C ou superior a 40°C e ventos constantes exigem cuidados especiais ou suspensão do assentamento.\n    *   Chuvas exigem que o emboço esteja na condição saturada e superfície seca (ver 3.30).\n*   **Método de Assentamento:** O assentamento pode ser realizado da cobertura ao térreo ou do térreo para a cobertura.\n*   **Tempo de Cura:** O assentamento só pode ocorrer após um período mínimo de 14 dias de cura do emboço.\n*   **Verificação de Qualidade:** A verificação da qualidade do chapisco pode ser comprometida se o emboço for executado apenas na fase de descida. O mapeamento deve ser cuidadosamente monitorado para identificar locais com espessura excessiva, exigindo atenção especial no posicionamento de reforços.\n\n**4. Etapas de Execução:**\n\nAs etapas típicas de produção do revestimento cerâmico incluem:\n\n1.  Descida\n2.  Lavagem da fachada\n3.  Aplicação de chapisco\n4.  Mapeamento\n5.  Execução do emboço\n6.  Inserção de reforços (quando especificado)\n7.  Assentamento das placas\n8.  Limpeza grossa das juntas\n9.  Rejuntamento\n10. Limpeza das juntas de movimentação\n11. Limpeza final das placas\n12. Execução das juntas\n\n**Observações Importantes:**\n\n*   **Normas Técnicas:**  Consultar e seguir as normas ABNT NBR 13755:2017, ABNT NBR 7200 e ABNT NBR 13749.\n*   **Especificações do Projeto:** Adaptar o processo às especificidades do projeto, incluindo tratamentos especiais, traço da argamassa, etc.\n*   **Monitoramento:** Realizar inspeções e correções de falhas no assentamento conforme necessário.\n*   **Condições Ambientais:** Manter o controle das condições ambientais para garantir a qualidade do assentamento.\n\nEste resumo fornece uma visão geral do processo. O documento original oferece detalhes adicionais sobre cada etapa.",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "system",
+      "name": null,
+      "id": null
+    }
+  }
+]
