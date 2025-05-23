@@ -1,0 +1,25 @@
+[
+  {
+    "type": "human",
+    "data": {
+      "content": "me fale sobre revestimento ceramico",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "human",
+      "name": null,
+      "id": null,
+      "example": false
+    }
+  },
+  {
+    "type": "system",
+    "data": {
+      "content": "Olá! Para te falar sobre revestimento cerâmico, preciso entender melhor o que você procura. O revestimento cerâmico é um material popular, conhecido por sua durabilidade e estética.\n\n**Em resumo, o revestimento cerâmico é:**\n\n*   **Material:** Geralmente feito de cerâmica, que é um material resistente e durável.\n*   **Características:**  Oferece uma superfície lisa e uniforme, boa resistência à abrasão e fácil limpeza.\n*   **Aplicações:** Amplamente utilizado em fachadas, pisos, e outras superfícies de construção.\n\n**Aqui estão alguns pontos importantes:**\n\n*   **Tipos:** Existem diversos tipos de cerâmica, como o cerâmica comum, cerâmica de alta performance e cerâmica decorativa.\n*   **Aplicação:**  É importante considerar a cor, textura e aderência do revestimento ao escolher o tipo.\n*   **Norma ABNT NBR 13755:**  Este documento define os requisitos e critérios de aceitação para revestimentos cerâmicos.\n\n**Para responder a suas perguntas mais específicas sobre revestimento cerâmico, preciso saber o que você quer saber. Por exemplo:**\n\n*   Você quer saber sobre os diferentes tipos de cerâmica?\n*   Você quer saber como escolher o tipo de revestimento cerâmico certo para um determinado projeto?\n*   Você tem alguma dúvida sobre a norma ABNT NBR 13755?\n\nPor favor, me diga o que você gostaria de saber sobre revestimentos cerâmicos.",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "system",
+      "name": null,
+      "id": null
+    }
+  }
+]

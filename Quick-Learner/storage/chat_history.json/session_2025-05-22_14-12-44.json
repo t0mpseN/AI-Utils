@@ -1,0 +1,48 @@
+[
+  {
+    "type": "human",
+    "data": {
+      "content": "Teste",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "human",
+      "name": null,
+      "id": null,
+      "example": false
+    }
+  },
+  {
+    "type": "system",
+    "data": {
+      "content": "Okay, I understand. You've provided the context for a project involving the design and execution of ceramic tile installations. I’m ready to answer your question. Please ask!",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "system",
+      "name": null,
+      "id": null
+    }
+  },
+  {
+    "type": "human",
+    "data": {
+      "content": "me fala sobre fachada",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "human",
+      "name": null,
+      "id": null,
+      "example": false
+    }
+  },
+  {
+    "type": "system",
+    "data": {
+      "content": "Olá! About the facade, here’s a breakdown of what it involves, according to the provided context:\n\nThe context focuses on the requirements and acceptance criteria for ceramic tile facades, specifically as outlined in ABNT NBR 13755:2017. Here’s what it covers:\n\n*   **Type of adhesive:** The context specifies that the type of adhesive used for the facade must be determined.\n*   **Orientation (N, S, L, and O):**  The façade’s orientation (N, S, L, and O) is important, and it’s a key aspect of the design.  This likely refers to the direction the facade faces.\n*   **Acceptance and Rejection:** The context emphasizes that the façade must be accepted if it meets all requirements of the standard.  If it’s not, it must be re-executed or repaired.\n*   **Inspection & Re-Inspection:** After work is completed, the facade must be re-inspected. If it meets all the requirements, it should be accepted again.\n\nEssentially, it's a detailed standard for ensuring the facade's appearance and durability through proper adherence to design specifications and quality control.\n\nDo you have any specific questions about these aspects of the facade, or would you like me to elaborate on any particular point?",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "system",
+      "name": null,
+      "id": null
+    }
+  }
+]

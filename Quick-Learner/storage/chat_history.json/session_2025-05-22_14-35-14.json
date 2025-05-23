@@ -1,0 +1,48 @@
+[
+  {
+    "type": "human",
+    "data": {
+      "content": "juntas de movimentação",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "human",
+      "name": null,
+      "id": null,
+      "example": false
+    }
+  },
+  {
+    "type": "system",
+    "data": {
+      "content": "Juntas de movimentação são necessárias para que a movimentação das juntas de movimentação ocorra de forma significativa e solicitem a propriedade elástica do selante.  O corte parcial do emboço, quando o projeto se adequa às situações descritas, permite que a movimentação ocorra de maneira controlada, garantindo a aderência do selante e evitando falhas do sistema.  A configuração da junta, que envolve a geometria do selante, o tamanho da junta e o LSLJ (Largura da Junta), deve ser detalhada no PRF.\n",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "system",
+      "name": null,
+      "id": null
+    }
+  },
+  {
+    "type": "human",
+    "data": {
+      "content": "me fale mais em tópicos",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "human",
+      "name": null,
+      "id": null,
+      "example": false
+    }
+  },
+  {
+    "type": "system",
+    "data": {
+      "content": "Okay, let’s delve deeper into the topic of **tipo de argamassa colante**. Here's a breakdown of key aspects, focusing on what’s relevant to your question:\n\n**1. Características Gerais da Argamassa Colante:**\n\n*   **Composição:** Argamassas colantes são geralmente compostas de resinas, polímeros e aditivos.  The specific formulation varies widely depending on the application.\n*   **Tipos:** There are many types, including:\n    *   **Argamassa de Poliuretano:** Known for their flexibility, durability, and good adhesion to various substrates.\n    *   **Argamassa de Resina Epóxi:**  Offers excellent strength and chemical resistance.\n    *   **Argamassa de Resina Acrílica:**  Provides good durability and weather resistance.\n*   **Aplicação:** They are used to bond materials like wood, stone, tile, and concrete.\n\n**2. Requisitos de Aplicação:**\n\n*   **Preparação da Superfície:** This is *critical*.  The substrate must be properly prepared – cleaned, sanded, and sometimes primed – to ensure good adhesion.\n*   **Mistura:**  Proper mixing is essential to achieve uniform consistency and density.\n*   **Tempo de Cura:**  Each type of argamassa colante has a specific curing time (hardening) which must be followed.\n*   **Cores/Estampas:**  Many argamasses are available in different colors and patterns, which can enhance aesthetics.\n\n**3.  Considerações Regionais e de Instalação:**\n\n*   **Nível de aderência:** The type of argamassa will vary depending on the local climate and the substrate.\n*   **Water Resistance:**  Some argamasses are designed to be water-resistant, while others offer better waterproofing.\n*   **Fastening:**  The speed of installation is dependent on the environment.\n\n\n\n**4. Fatores Regionais Importantes:**\n\n*   **Humidity:** High humidity can affect the curing process.\n*   **Temperature:** Temperature plays a crucial role in setting times and curing rates.\n*   **Local Building Codes:**  Local regulations regarding materials and construction methods may dictate the use of specific types of argamassa.\n*   **Geological Conditions:** The type of soil beneath the substrate can influence the choice of argamassa.\n\n\nDo you have any specific questions about particular aspects of argamasses, such as:\n\n*   Specific types and their applications?\n*   Curing times?\n*   How to troubleshoot adhesion problems?",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "system",
+      "name": null,
+      "id": null
+    }
+  }
+]

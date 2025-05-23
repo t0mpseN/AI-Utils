@@ -1,0 +1,25 @@
+[
+  {
+    "type": "human",
+    "data": {
+      "content": "olá, me fale sobre fachadas",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "human",
+      "name": null,
+      "id": null,
+      "example": false
+    }
+  },
+  {
+    "type": "system",
+    "data": {
+      "content": "Olá! Sobre fachadas, posso te ajudar com algumas informações. As fachadas são a parte externa de uma construção e são projetadas para proteger, decorar e complementar o edifício. Elas podem variar muito em estilo e design, dependendo da arquitetura e do contexto do projeto.\n\n**Em termos gerais, as fachadas envolvem:**\n\n*   **Características principais:** Cor, material, textura, forma, design e tamanho.\n*   **Tipos de fachadas:** Existem diferentes tipos de fachadas, como:\n    *   **Fachada frontal:** A mais visível, geralmente com elementos de entrada e vitrais.\n    *   **Fachada lateral:**  Orientada para o lado externo, costuma ter mais espaço para áreas de convivência.\n    *   **Fachada de serviço:**  Localizada nas áreas internas, como vestiários, banheiros, etc.\n    *   **Fachada rebaixada:**  Com uma cor ou textura mais suave, que se estende para fora, criando um efeito de \"desenvolvimento\".\n*   **Importância:** As fachadas desempenham um papel importante na estética de um edifício e influenciam a percepção que as pessoas têm do local.\n\n**Segundo o contexto, e se você tiver alguma pergunta específica sobre as fachadas, por favor, me diga!** Por exemplo, você gostaria de saber sobre:\n\n*   **Normas de construção e requisitos de fachadas?**\n*   **Como as fachadas podem ser projetadas para otimizar a luminosidade e o conforto térmico?**\n*   **As diferentes opções de materiais para fachadas?**\n\n",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "system",
+      "name": null,
+      "id": null
+    }
+  }
+]

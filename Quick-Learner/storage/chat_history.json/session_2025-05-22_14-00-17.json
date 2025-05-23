@@ -1,0 +1,25 @@
+[
+  {
+    "type": "human",
+    "data": {
+      "content": "me fale sobre juntas de movimentação",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "human",
+      "name": null,
+      "id": null,
+      "example": false
+    }
+  },
+  {
+    "type": "system",
+    "data": {
+      "content": "Okay, let's talk about joint movements!\n\nJuntas de movimentação are a crucial part of design in construction, particularly when dealing with areas like façade walls. They're designed to handle the movement caused by differences in the building's surface. Here's a breakdown of what you need to know:\n\n**What are They?**\n\n*   **Definition:** These joints are created when the placement of the joining material (like the base, apron, and sealant) isn't ideal. The movement of the building creates a gap or area where the material can shift.\n*   **Purpose:** They're strategically placed to allow the material to move and deform, which helps prevent cracks and failures.\n\n**Why are They Important?**\n\n*   **Preventing Failures:** If the movement isn't accounted for, the material can shift and cause a crack or failure.\n*   **Reducing Stress:**  The design ensures the material can move and flex in a controlled way, lessening the stress on the structure.\n\n**Key Aspects Explained**\n\n*   **The 52 Rule:** Figure C.4 – Falha de aplicação do selante – highlights the importance of these joints. The rule states that you need to create joints with a specific type of *cut* in the emboço (the area where the joint is positioned) to allow for movement.  A partial cut prevents the material from being directly impacted by the joint.\n*   **C.1.2 – Joint Placement Guide:**  This guide provides suggestions for joint types and placements based on the conditions.\n*   **Types of Jumps:**  The text refers to different types of “jumps” – they are designed to occur within the movement of the building.\n\n**The Role of the 'Neste Último Caso' (Last Case)**\n\n*   **Reduced Risk:** When the movement is reduced, the theory of adhesion (the sealant sticking) isn't as effective. This is why the design has to incorporate a controlled movement – to reduce the potential for failure.\n*   **Reduces Tension:** The Juntas de movimentação are used to reduce the tension in the materials and the areas where the material is forced to move.\n\n**Practical Examples**\n\n*   **Controlled Movement:** The text demonstrates a situation where a partial cut is used. It's a more controlled way to handle the movement, preventing excessive stress on the material.\n\n**In short, joints of movement are a critical design element – they help to ensure the stability and integrity of the building by controlling how it responds to movement.**\n\nDo you have any specific aspects of joints of movement you'd like me to elaborate on? For example, would you like to see a specific example of how a cut might be used or a detailed explanation of the role of the PRF (the project's reporting form)?",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "system",
+      "name": null,
+      "id": null
+    }
+  }
+]

@@ -5,7 +5,7 @@ from datetime import datetime
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_community.vectorstores import FAISS
 from langchain_core.messages import HumanMessage, SystemMessage
-from ..model_loaders.simple_interpreter import load_embedding_model, load_qa_model
+from ..model_loaders.load_model import load_embedding_model, load_assistant_model
 from ..helpers.chat_history import FileChatMessageHistory
 
 def get_file_hash(file_path):
@@ -16,8 +16,8 @@ class ChatPDF:
     def __init__(self):
         self.vector_store = None
         self.chat_history = None
-        self.llm = load_qa_model()
-        self.embed = load_embedding_model()
+        self.llm = load_assistant_model("gemma3:1b")
+        self.embed = load_embedding_model("nomic-embed-text")
         self.last_file_hash = None
 
     def ingest(self, file_path, progress_callback=None):

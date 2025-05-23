@@ -1,0 +1,25 @@
+[
+  {
+    "type": "human",
+    "data": {
+      "content": "olá, me fale sobre juntas de movimentação",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "human",
+      "name": null,
+      "id": null,
+      "example": false
+    }
+  },
+  {
+    "type": "system",
+    "data": {
+      "content": "Olá! As juntas de movimentação são um recurso importante em projetos de construção, especialmente quando se trata de estruturas com movimento diferencial. Elas são projetadas para controlar fissuras, subdividir superfícies e garantir a durabilidade do sistema.\n\n**Em resumo:**\n\n*   **O que são:** São juntas de selante que permitem o movimento de uma área de uma superfície, possibilitando o tratamento futuro do revestimento.\n*   **Por que são importantes:** Controlam a fissuração, asseguram a subdivisão de superfícies e ajudam a garantir a resistência do revestimento.\n*   **Como funcionam:** O corte parcial do emboço, com o uso de juntas de movimentação, permite que a estrutura se mova de forma controlada, possibilitando o tratamento de fissuras e a construção de painéis cerâmicos.\n*   **Variações:** O tipo de corte no emboço e a posição da junta podem variar, dependendo do projeto.\n\nSe precisar de mais detalhes sobre algum aspecto específico, como exemplos de casos de uso ou como calcular o tamanho da junta, me diga!",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "system",
+      "name": null,
+      "id": null
+    }
+  }
+]
