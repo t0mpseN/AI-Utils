@@ -1,5 +1,8 @@
 import os
 import hashlib
+import subprocess
+import tempfile
+import shutil
 from datetime import datetime
 from langchain_core.documents import Document
 from langchain_community.vectorstores import FAISS
@@ -7,24 +10,39 @@ from langchain_core.messages import HumanMessage, SystemMessage
 from ..model_loaders.load_model import load_embedding_model, load_assistant_model
 from ..helpers.chat_history import FileChatMessageHistory
 
-import chm  # from pychm
 
 def get_file_hash(file_path):
     with open(file_path, "rb") as f:
         return hashlib.md5(f.read()).hexdigest()
 
-def load_chm(file_path):
-    chm_obj = chm.CHMFile(file_path)
+def extract_chm_with_7z(chm_path):
+    temp_dir = tempfile.mkdtemp()
+    seven_zip_path = r"C:/Program Files/7-Zip/7z.exe"  # ajuste conforme necessário
+
+    if not os.path.exists(seven_zip_path):
+        raise RuntimeError(f"7z.exe not found at {seven_zip_path}")
+
+    try:
+        subprocess.run([seven_zip_path, "x", chm_path, f"-o{temp_dir}"], check=True, stdout=subprocess.DEVNULL)
+        return temp_dir
+    except Exception as e:
+        shutil.rmtree(temp_dir)
+        raise RuntimeError(f"Failed to extract CHM: {e}")
+
+def load_chm(chm_path):
+    extracted_dir = extract_chm_with_7z(chm_path)
     documents = []
 
-    # Iterate through all topics
-    for topic in chm_obj.get_topics():
-        if topic.endswith(".html") or topic.endswith(".htm"):
-            try:
-                content = chm_obj.read(topic).decode("utf-8", errors="ignore")
-                documents.append(Document(page_content=content, metadata={"source": topic}))
-            except Exception:
-                continue
+    for root, _, files in os.walk(extracted_dir):
+        for file in files:
+            if file.endswith(".html") or file.endswith(".htm"):
+                file_path = os.path.join(root, file)
+                try:
+                    with open(file_path, "r", encoding="utf-8", errors="ignore") as f:
+                        content = f.read()
+                        documents.append(Document(page_content=content, metadata={"source": file_path}))
+                except Exception:
+                    continue
 
     return documents
 

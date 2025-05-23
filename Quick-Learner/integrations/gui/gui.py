@@ -5,6 +5,8 @@ import time
 from streamlit_chat import message
 import streamlit.components.v1 as components
 from ..document_loaders.pdf_loader import ChatPDF
+from ..document_loaders.chm_loader import ChatCHM
+from ..helpers.assistant_selector import pick_assistant
 
 st.set_page_config(page_title="Quick Learner", page_icon="🤓", layout="wide")
 
@@ -94,7 +96,7 @@ def page():
     if "messages" not in st.session_state:
         st.session_state["messages"] = []
     if "assistant" not in st.session_state:
-        st.session_state["assistant"] = ChatPDF()
+        st.session_state["assistant"] = ChatCHM() #change this based on the file type (call function to pick assistant)
     if "is_streaming" not in st.session_state:
         st.session_state["is_streaming"] = False
     if "current_response" not in st.session_state:
@@ -104,8 +106,8 @@ def page():
     with st.sidebar:
         st.subheader("📄 Upload de Documentos")
         uploaded_files = st.file_uploader(
-            "Selecionar arquivos PDF",
-            type=["pdf"],
+            "Selecionar arquivos",
+            type=["pdf", "chm"],
             key="file_uploader",
             on_change=read_and_save_file,
             accept_multiple_files=True,

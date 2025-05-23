@@ -8,4 +8,3 @@ streamlit_chat
 faiss-cpu
 pypdf
 datetime
-pychm #needs Microsoft Visual C++ 14.0 or greater (Windows SDK)
