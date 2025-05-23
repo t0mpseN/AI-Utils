@@ -1,3 +1,5 @@
+#chm_loader.py
+# chm_loader.py
 import os
 import hashlib
 import subprocess
@@ -9,6 +11,9 @@ from langchain_community.vectorstores import FAISS
 from langchain_core.messages import HumanMessage, SystemMessage
 from ..model_loaders.load_model import load_embedding_model, load_assistant_model
 from ..helpers.chat_history import FileChatMessageHistory
+from langchain_community.vectorstores.faiss import FAISS as LC_FAISS
+from langchain_community.vectorstores.utils import DistanceStrategy
+
 
 
 def get_file_hash(file_path):
@@ -29,28 +34,58 @@ def extract_chm_with_7z(chm_path):
         shutil.rmtree(temp_dir)
         raise RuntimeError(f"Failed to extract CHM: {e}")
 
-def load_chm(chm_path):
+def load_chm(chm_path, progress_callback=None):
     extracted_dir = extract_chm_with_7z(chm_path)
-    documents = []
 
+    html_files = []
     for root, _, files in os.walk(extracted_dir):
         for file in files:
             if file.endswith(".html") or file.endswith(".htm"):
-                file_path = os.path.join(root, file)
-                try:
-                    with open(file_path, "r", encoding="utf-8", errors="ignore") as f:
-                        content = f.read()
-                        documents.append(Document(page_content=content, metadata={"source": file_path}))
-                except Exception:
-                    continue
+                html_files.append(os.path.join(root, file))
+
+    documents = []
+    total = len(html_files)
+
+    for i, filepath in enumerate(html_files):
+        try:
+            with open(filepath, "r", encoding="utf-8", errors="ignore") as f:
+                content = f.read()
+                documents.append(Document(page_content=content, metadata={"source": filepath}))
+        except Exception:
+            continue
+
+        if progress_callback:
+            pct = 0.05 + 0.25 * (i / total)  # 5% até 30% da barra de progresso
+            progress_callback(pct, f"Reading file {i+1}/{total}")
 
     return documents
 
-class ChatCHM:
+def build_vector_store_with_progress(docs, embed_func, progress_callback=None):
+    docs_with_embeddings = []
+    total = len(docs)
+
+    for i, doc in enumerate(docs):
+        embedding = embed_func.embed_query(doc.page_content)
+        docs_with_embeddings.append((doc, embedding))
+
+        if progress_callback:
+            pct = 0.3 + 0.6 * (i / total)  # de 30% a 90%
+            progress_callback(pct, f"Embedding document {i+1}/{total}")
+
+    vector_store = LC_FAISS.from_embeddings(
+        [emb for (_, emb) in docs_with_embeddings],
+        embed_func,
+        documents=[doc for (doc, _) in docs_with_embeddings],
+        distance_strategy=DistanceStrategy.COSINE,
+    )
+
+    return vector_store
+
+class Assistant:
     def __init__(self):
         self.vector_store = None
         self.chat_history = None
-        self.llm = load_assistant_model()
+        self.llm = load_assistant_model("codellama:13b") #codellama:7b or codellama:13b or codellama:34b (if possible)
         self.embed = load_embedding_model()
         self.last_file_hash = None
 
@@ -61,12 +96,13 @@ class ChatCHM:
         if os.path.exists(vectorstore_path):
             self.vector_store = FAISS.load_local(vectorstore_path, self.embed, allow_dangerous_deserialization=True)
         else:
-            pages = load_chm(file_path)
+            pages = load_chm(file_path, progress_callback)
 
             if progress_callback:
                 progress_callback(0.3, "Generating embeddings...")
 
-            self.vector_store = FAISS.from_documents(pages, self.embed)
+            #self.vector_store = FAISS.from_documents(pages, self.embed)
+            self.vector_store = build_vector_store_with_progress(pages, self.embed, progress_callback)
 
             os.makedirs(vectorstore_path, exist_ok=True)
             self.vector_store.save_local(vectorstore_path)
@@ -117,3 +153,5 @@ class ChatCHM:
     def clear(self):
         self.vector_store = None
         self.chat_history = None
+
+

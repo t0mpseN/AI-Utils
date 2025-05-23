@@ -1,11 +1,11 @@
-
-
+from ..document_loaders import pdf_loader, chm_loader
 
 def pick_assistant(file_type):
-    """
-    Function to select an assistant from a list of available assistants.
-    """
-    if "assistant" not in st.session_state:
-        st.session_state["assistant"] = None    
-    # Return the selected assistant
-    return selected_assistant
+    if file_type == "pdf" or "txt":
+        return pdf_loader.Assistant
+    elif file_type == "chm":
+        return chm_loader.Assistant
+    elif file_type == "pdf_image":
+        return ""
+    else:
+        return Exception("File Type not supported.")
