@@ -1,0 +1,25 @@
+[
+  {
+    "type": "human",
+    "data": {
+      "content": "o que sao juntas de movimentaçao?",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "human",
+      "name": null,
+      "id": null,
+      "example": false
+    }
+  },
+  {
+    "type": "system",
+    "data": {
+      "content": "As juntas de movimentação são elementos construtivos presentes em fachadas, projetadas para controlar a fissuração e subdividir superfícies revestidas, como placas cerâmicas. Elas permitem o movimento diferencial entre as superfícies, acomodando as movimentações transmitidas pelo edifício e os fatores climáticos (temperatura, umidade).\n\nEm termos de função, as juntas de movimentação:\n\n*   **Controlam a fissuração:** Confinam e/ou direcionam o surgimento de fissuras, possibilitando seu tratamento futuro.\n*   **Subdividem as superfícies revestidas:** Formam painéis que suportam os efeitos das movimentações.\n*   **Separar o revestimento cerâmico:** De outros elementos construtivos que se movimentam de forma distinta.\n\nEssas juntas são geralmente seladas com um selante e devem apresentar uma geometria retangular, com bordas firmes e lisas, para garantir o desempenho adequado. A relação largura/profundidade (fator de forma) é especificada no projeto e deve ser consistente com as propriedades do selante aplicado.",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "system",
+      "name": null,
+      "id": null
+    }
+  }
+]

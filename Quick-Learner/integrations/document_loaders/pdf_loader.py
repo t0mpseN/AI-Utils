@@ -16,8 +16,8 @@ class ChatPDF:
     def __init__(self):
         self.vector_store = None
         self.chat_history = None
-        self.llm = load_assistant_model("gemma3:1b")
-        self.embed = load_embedding_model("nomic-embed-text")
+        self.llm = load_assistant_model("gemma3:4b")
+        self.embed = load_embedding_model()
         self.last_file_hash = None
 
     def ingest(self, file_path, progress_callback=None):
