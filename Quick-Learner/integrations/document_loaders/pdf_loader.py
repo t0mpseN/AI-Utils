@@ -12,11 +12,11 @@ def get_file_hash(file_path):
     with open(file_path, "rb") as f:
         return hashlib.md5(f.read()).hexdigest()
 
-class ChatPDF:
+class Assistant:
     def __init__(self):
         self.vector_store = None
         self.chat_history = None
-        self.llm = load_assistant_model("gemma3:4b")
+        self.llm = load_assistant_model()
         self.embed = load_embedding_model()
         self.last_file_hash = None
 
