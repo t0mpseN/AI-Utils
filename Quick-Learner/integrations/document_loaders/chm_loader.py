@@ -72,7 +72,15 @@ def build_vector_store_with_progress(docs, embed_func, progress_callback=None):
 
     texts = [doc.page_content for doc in docs]
     metadatas = [doc.metadata for doc in docs]
-    batch_size = 32  # pode ajustar conforme o modelo usado
+    batch_size = 128 # pode ajustar conforme o modelo usado
+
+    '''
+    # Se o modelo de embedding for muito pesado, use um batch size menor
+    # Se o modelo de embedding for leve, use um batch size maior
+    mxbai-embed-large → use 16–32
+    nomic-embed-text → 32–64
+    gte-Qwen2-7B-instruct → pode exigir batch size <= 8, especialmente se for rodado localmente com pouca RAM/VRAM.
+    '''
 
     for start in range(0, total, batch_size):
         end = min(start + batch_size, total)
