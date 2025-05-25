@@ -11,6 +11,9 @@ from langchain_community.vectorstores.utils import DistanceStrategy
 from ..model_loaders.load_model import load_embedding_model, load_assistant_model
 from ..helpers.chat_history import FileChatMessageHistory
 
+ASSISTANT_MODEL = "gemma3:4b"  # gemma3:1b/gemma3:4b/gemma3:12b | codellama:7b/codellama:13b
+EMBEDDING_MODEL = "mxbai-embed-large"  # nomic-embed-text | mxbai-embed-large | all-minilm | gte-Qwen2-7B-instruct
+
 def get_file_hash(file_path):
     with open(file_path, "rb") as f:
         return hashlib.md5(f.read()).hexdigest()
@@ -82,8 +85,8 @@ class ChatPDF:
     def __init__(self):
         self.vector_stores: Dict[str, FAISS] = {}
         self.chat_history = None
-        self.llm = load_assistant_model("gemma3:4b")
-        self.embed = load_embedding_model("mxbai-embed-large")
+        self.llm = load_assistant_model(ASSISTANT_MODEL)
+        self.embed = load_embedding_model(EMBEDDING_MODEL)
         self.loaded_files: Dict[str, str] = {}
 
     def ingest(self, file_paths: List[str], progress_callback=None):

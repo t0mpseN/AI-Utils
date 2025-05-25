@@ -14,6 +14,8 @@ from langchain_community.vectorstores.utils import DistanceStrategy
 from ..model_loaders.load_model import load_embedding_model, load_assistant_model
 from ..helpers.chat_history import FileChatMessageHistory
 
+ASSISTANT_MODEL = "codellama:13b"  # codellama:7b or codellama:13b or codellama:34b (if possible)
+EMBEDDING_MODEL = "all-minilm"  # nomic-embed-text | mxbai-embed-large | all-minilm | gte-Qwen2-7B-instruct
 
 def get_file_hash(file_path):
     with open(file_path, "rb") as f:
@@ -117,8 +119,8 @@ class ChatCHM:
     def __init__(self):
         self.vector_store = None
         self.chat_history = None
-        self.llm = load_assistant_model("codellama:13b") # codellama:7b or codellama:13b or codellama:34b (if possible) 
-        self.embed = load_embedding_model("all-minilm") # mxbai-embed-large | nomic-embed-text | all-minilm (fast debugging) | gte-Qwen2-7B-instruct (top model)
+        self.llm = load_assistant_model(ASSISTANT_MODEL) # codellama:7b or codellama:13b or codellama:34b (if possible) 
+        self.embed = load_embedding_model(EMBEDDING_MODEL) # mxbai-embed-large | nomic-embed-text | all-minilm (fast debugging) | gte-Qwen2-7B-instruct (top model)
         self.last_file_hash = None 
 
     def ingest(self, file_path, progress_callback=None):
