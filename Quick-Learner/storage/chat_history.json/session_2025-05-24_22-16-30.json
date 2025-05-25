@@ -1,0 +1,48 @@
+[
+  {
+    "type": "human",
+    "data": {
+      "content": "Sobre o que são os documentos em anexo?",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "human",
+      "name": null,
+      "id": null,
+      "example": false
+    }
+  },
+  {
+    "type": "system",
+    "data": {
+      "content": "Os documentos em anexo são artigos científicos sobre o tema \"Aprendizagem e Memória sob Estresse\". Eles exploram como o estresse afeta os processos de aprendizagem e memória, incluindo o impacto em diferentes sistemas de memória (como o hipocampo e o estriado) e a influência do estresse na incorporação de novas informações (o chamado \"efeito de engano\").\n\nEm resumo, os artigos abordam:\n\n*   **Mudanças na qualidade da aprendizagem:** Como o estresse altera a forma como aprendemos.\n*   **Sistemas de memória:** O papel do hipocampo e do estriado na aprendizagem e memória sob estresse.\n*   **Incorporação de informações:** Como o estresse pode levar à incorporação de informações incorretas na memória (efeito de engano).",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "system",
+      "name": null,
+      "id": null
+    }
+  },
+  {
+    "type": "human",
+    "data": {
+      "content": "Você também recebeu uma norma NBR sobre revestimento cerâmico em fachadas?",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "human",
+      "name": null,
+      "id": null,
+      "example": false
+    }
+  },
+  {
+    "type": "system",
+    "data": {
+      "content": "Não, eu não tenho informações sobre uma norma NBR específica para revestimento cerâmico em fachadas. Minhas informações são baseadas em dados textuais e não em bancos de dados de normas técnicas. \n\nSe você precisa dessa informação, sugiro consultar fontes oficiais, como:\n\n*   **ABNT (Associação Brasileira de Normas Técnicas):** [https://www.abnt.org.br/](https://www.abnt.org.br/)\n*   **Empresas especializadas em revestimentos cerâmicos:** Podem fornecer informações sobre as normas técnicas relevantes para os produtos que oferecem.",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "system",
+      "name": null,
+      "id": null
+    }
+  }
+]

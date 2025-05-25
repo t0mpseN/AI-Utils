@@ -3,11 +3,10 @@ import os
 import tempfile
 import streamlit as st
 import time
+from pathlib import Path
 from streamlit_chat import message
 import streamlit.components.v1 as components
-from ..document_loaders.pdf_loader import Assistant
-from ..document_loaders.chm_loader import Assistant
-from ..helpers.assistant_selector import pick_assistant
+from ..document_loaders import pdf_loader, chm_loader
 
 st.set_page_config(page_title="Quick Learner", page_icon="🤓", layout="wide")
 
@@ -71,43 +70,45 @@ def render_chat_interface():
             streamed_response = ""
             
             with st.chat_message("assistant"):
-                if "streaming_placeholder" not in st.session_state:
-                    st.session_state["streaming_placeholder"] = st.empty()
-                placeholder = st.session_state["streaming_placeholder"]
+                with st.spinner("🤔 Pensando..."):
+                    if "streaming_placeholder" not in st.session_state:
+                        st.session_state["streaming_placeholder"] = st.empty()
+                    placeholder = st.session_state["streaming_placeholder"]
 
-                try:
-                    for chunk in st.session_state["assistant"].ask(user_text):
-                        streamed_response += chunk
-                        st.session_state["current_response"] = streamed_response
-                        placeholder.markdown(streamed_response + "▌")
+                    try:
+                        for chunk in st.session_state["assistant"].ask(user_text):
+                            streamed_response += chunk
+                            st.session_state["current_response"] = streamed_response
+                            placeholder.markdown(streamed_response + "▌")
 
-                    placeholder.markdown(streamed_response)
-                    st.session_state["messages"].append((streamed_response, False))
-                except Exception as e:
-                    error_msg = f"Erro ao processar: {str(e)}"
-                    placeholder.markdown(error_msg)
-                    st.session_state["messages"].append((error_msg, False))
-                finally:
-                    st.session_state["is_streaming"] = False
-                    st.session_state["current_response"] = ""
-                    del st.session_state["streaming_placeholder"]
+                        placeholder.markdown(streamed_response)
+                        st.session_state["messages"].append((streamed_response, False))
+                    except Exception as e:
+                        error_msg = f"Erro ao processar: {str(e)}"
+                        placeholder.markdown(error_msg)
+                        st.session_state["messages"].append((error_msg, False))
+                    finally:
+                        st.session_state["is_streaming"] = False
+                        st.session_state["current_response"] = ""
+                        del st.session_state["streaming_placeholder"]
 
     st.markdown('</div>', unsafe_allow_html=True)
 
-def get_file_extension(uploaded_file):
+def get_file_extension(file):
     """Returns the file extension in lowercase without the dot"""
-    return os.path.splitext(uploaded_file.name)[1][1:].lower()
+    return os.path.splitext(file.name)[1][1:].lower()
+
+def pick(file_type):
+    if file_type == "pdf":  # Fixed the condition here
+        return pdf_loader.ChatPDF()
+    elif file_type == "chm":
+        return chm_loader.ChatCHM()
+    elif file_type == "pdf_image":
+        return ""
+    else:
+        return Exception("File Type not supported.")
 
 def page():
-    if "messages" not in st.session_state:
-        st.session_state["messages"] = []
-    if "assistant" not in st.session_state:
-        st.session_state["assistant"] = None #change this based on the file type (call function to pick assistant)
-    if "is_streaming" not in st.session_state:
-        st.session_state["is_streaming"] = False
-    if "current_response" not in st.session_state:
-        st.session_state["current_response"] = ""
-
     # Sidebar fixa com upload de documentos
     with st.sidebar:
         st.subheader("📄 Upload de Documentos")
@@ -115,19 +116,37 @@ def page():
             "Selecionar arquivos",
             type=["pdf", "chm"],
             key="file_uploader",
-            on_change=read_and_save_file,
+            #on_change=read_and_save_file,
             accept_multiple_files=True,
             label_visibility="collapsed"
         )
 
-        # Set the assistant based on the first uploaded file (if any)
-    if uploaded_files and st.session_state["file_uploader"]:
-        first_file = st.session_state["file_uploader"][0]
-        file_extension = get_file_extension(first_file)
-        st.session_state["assistant"] = pick_assistant(file_type=file_extension)
-    elif st.session_state["assistant"] is None:
-        # Default to PDF assistant if no files uploaded yet
-        st.session_state["assistant"] = pick_assistant(file_type="pdf")
+    # Initialize or update assistant based on uploaded files
+    if "file_uploader" in st.session_state and st.session_state.file_uploader:
+        first_file = st.session_state.file_uploader[0]
+        file_type = get_file_extension(first_file)
+        print(f"\nFILE TYPE: {file_type}\n")
+        
+        # Only create new assistant if we don't have one or if the type changed
+        if ("assistant" not in st.session_state or 
+            not isinstance(st.session_state.assistant, pick(file_type).__class__)):
+            st.session_state["assistant"] = pick(file_type)
+            
+        # This will trigger when files are uploaded
+        if st.button("Process Files", on_click=read_and_save_file):
+            pass
+    else:
+        # No files uploaded - don't initialize any assistant yet
+        if "assistant" not in st.session_state:
+            st.session_state["assistant"] = None
+            
+    # Initialize other session state variables
+    if "messages" not in st.session_state:
+        st.session_state["messages"] = []
+    if "is_streaming" not in st.session_state:
+        st.session_state["is_streaming"] = False
+    if "current_response" not in st.session_state:
+        st.session_state["current_response"] = ""
 
     # Layout principal: uma coluna para o chat
     col1, col2 = st.columns([0.1, 30])  # Sidebar já é fixa; col1 vazio deixa col2 com tudo
