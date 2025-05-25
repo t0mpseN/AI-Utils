@@ -107,6 +107,7 @@ class ChatPDF:
 
             try:
                 file_hash = get_file_hash(file_path)
+                print(f"File hash: {file_hash}")
                 vectorstore_path = f"./storage/faiss/{file_hash}"
 
                 if file_hash in self.vector_stores:

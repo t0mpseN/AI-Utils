@@ -133,6 +133,7 @@ class ChatCHM:
 
     def ingest(self, file_path, progress_callback=None):
         file_hash = get_file_hash(file_path)
+        print(f"File hash: {file_hash}")
         vectorstore_path = f"./storage/faiss/{file_hash}"
 
         if vectorstore_exists(vectorstore_path):
