@@ -125,7 +125,6 @@ def page():
     if "file_uploader" in st.session_state and st.session_state.file_uploader:
         first_file = st.session_state.file_uploader[0]
         file_type = get_file_extension(first_file)
-        print(f"\nFILE TYPE: {file_type}\n")
         
         # Only create new assistant if we don't have one or if the type changed
         if ("assistant" not in st.session_state or 

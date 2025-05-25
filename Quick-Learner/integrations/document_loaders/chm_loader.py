@@ -9,10 +9,11 @@ from datetime import datetime
 from langchain_core.documents import Document
 from langchain_community.vectorstores import FAISS
 from langchain_core.messages import HumanMessage, SystemMessage
-from ..model_loaders.load_model import load_embedding_model, load_assistant_model
-from ..helpers.chat_history import FileChatMessageHistory
 from langchain_community.vectorstores.faiss import FAISS as LC_FAISS
 from langchain_community.vectorstores.utils import DistanceStrategy
+from ..model_loaders.load_model import load_embedding_model, load_assistant_model
+from ..helpers.chat_history import FileChatMessageHistory
+
 
 def get_file_hash(file_path):
     with open(file_path, "rb") as f:

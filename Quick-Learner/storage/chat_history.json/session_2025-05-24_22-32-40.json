@@ -1,0 +1,25 @@
+[
+  {
+    "type": "human",
+    "data": {
+      "content": "oi, sobre o que falam os documentos anexados?",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "human",
+      "name": null,
+      "id": null,
+      "example": false
+    }
+  },
+  {
+    "type": "system",
+    "data": {
+      "content": "Os documentos abordam a relação entre estresse e memória. Mais especificamente:\n\n*   **Documento 1 (ABNT NBR 13755):** Detalha uma nova edição da norma para revestimentos cerâmicos, com foco em orientações, padronização de testes (como o ensaio de resistência superficial), e a necessidade de declarar variáveis consideradas no projeto. Também menciona a criação de anexos normativos e informativos.\n*   **Documento 2 (Referências Normativas):** Lista as normas técnicas relacionadas ao assunto (aço galvanizado, argamassas, placas cerâmicas, etc.).\n*   **Documento 3 (Sobre o Stress e Memória):** Explica como o estresse pode alterar os sistemas de memória, induzindo uma mudança de um sistema de memória cognitivo (dependente do hipocampo) para um sistema de memória mais rígido e habituado (baseado no estriado dorsal).  Ainda, relata que o estresse reduz a capacidade de integrar novas informações em memórias existentes.\n\nEm resumo, os documentos tratam da influência do estresse na forma como as memórias são criadas e armazenadas.",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "system",
+      "name": null,
+      "id": null
+    }
+  }
+]
